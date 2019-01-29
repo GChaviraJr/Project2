@@ -5,8 +5,10 @@ const path = require("path");
 const Sequelize = require("sequelize");
 const basename = path.basename(module.filename);
 const env = process.env.NODE_ENV || "development";
+const redisEnv = process.env.NODE_ENV || "redisdb"
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
+const redisDb = {};
 
 if (config.use_env_variable) {
   let sequelize = new Sequelize(process.env[config.use_env_variable]);
@@ -39,4 +41,7 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = db;
+module.exports = {
+  db,
+  redisDb
+}
