@@ -2,9 +2,21 @@
   "development": {
     "username": "root",
     "password": "Sb1598951",
+<<<<<<< HEAD
     "database": "brewery_db",
     "host": "127.0.0.1",
+=======
+    "database": "mysql",
+    "host": "localhost",
+>>>>>>> 2a614971bbfeca6ae58a23cdab8b575ce7f52743
     "dialect": "mysql"
+  },
+  "REDIS": {
+    "username": "",
+    "password": "",
+    "database": "redis",
+    "host": "localhost",
+    "dialect": "redis"
   },
   "test": {
     "username": "root",

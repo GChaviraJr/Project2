@@ -1,3 +1,67 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+
+body{
+  background-image: url("../images/dark.jpg");
+  
+  background-size: 400px 1070px;
+}
+
+#quote{
+  font-style:italic;
+  text-align:center;
+  color:white;
+  
+}
+.jumbotron{
+  background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images/rows.jpg");
+  background-repeat: no-repeat;
+  margin:0;
+  padding-top:5%;
+}
+
+.form{
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  padding: 10px;
+}
+
+#cityForm{
+  display: block;
+  text-align: right; 
+}
+
+#inputSection{
+  padding-top:20%;
+
+}
+  
+  
+.container{
+  background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images/beer.png");
+  background-size: 2000px 1000px;
+  padding:0;
+}
+#breweryList{
+  padding-bottom:30%;
+  padding-top:10%;
+}
+
+.input-fields {
+  padding:15px;
+}
+
+  
+.card {
+  margin: 10px;
+padding: 10px;
+}
+
+
+#firstPageBody {
+  width: 90%;
+}
