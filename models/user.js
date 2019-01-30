@@ -15,8 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     phone: {
-      type: DataTypes.INTEGER,
-      defaultValue: "Personal"
+      type: DataTypes.INTEGER
     }
   });
   return User;

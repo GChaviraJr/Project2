@@ -3,9 +3,9 @@ var db = require("../models");
 module.exports = function(app) {
   // GET route for getting all of the users
   app.get("/home", (req, res) => {
-    db.user.findAll({})
-    .then((dbuser) => {
-      res.json(dbuser);
+    db.User.findAll({})
+    .then((dbusers) => {
+      res.json(dbusers);
       });
   });
 
@@ -34,7 +34,7 @@ module.exports = function(app) {
   // });
 
   // Retrieving data from users Register
-  app.post("/home", (req, res) => {
+  app.post("/register", (req, res) => {
     db.User.create({
       name: req.body.name,
       email: req.body.email,
