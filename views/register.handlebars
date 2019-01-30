@@ -12,16 +12,8 @@
     <form class="bg-white mt-3 ml-4" id="firstPageBody">
         <div class="form-row ml-1 mt-2">
             <div class="col-md-4 mb-3 mt-2">
-                <label for="validationServer01">First name</label>
-                <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name"
-                    required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="col-md-4 mb-3 ml-1 mt-2">
-                <label for="validationServer02">Last name</label>
-                <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name"
+                <label for="validationServer01">Full Name</label>
+                <input type="text" class="form-control is-valid" name="name" id="validationServer01" placeholder="John Doe"
                     required>
                 <div class="valid-feedback">
                     Looks good!
@@ -33,7 +25,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupPrepend3">@</span>
                     </div>
-                    <input type="text" class="form-control is-invalid" id="validationServerEmail" placeholder="john@doe.com"
+                    <input type="text" class="form-control is-invalid" name="email" id="validationServerEmail" placeholder="john@doe.com"
                         aria-describedby="inputGroupPrepend3" required>
                     <div class="invalid-feedback">
                         Please enter your email address.
@@ -44,7 +36,7 @@
         <div class="form-row ml-1">
             <div class="col-md-3 mb-3 ml-1">
                     <label for="validationServer05">Phone Number</label>
-                    <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="555-555-5555" required>
+                    <input type="text" class="form-control is-invalid" name="phone" id="validationServer05" placeholder="555-555-5555" required>
                     <div class="invalid-feedback">
                         Please provide a valid phone number.
                     </div>
@@ -61,7 +53,7 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary ml-3 mb-2 mt-2" type="submit">Submit form</button>
+        <button class="btn btn-primary ml-3 mb-2 mt-2" type="submit" method="POST">Submit form</button>
     </form>
 
 

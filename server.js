@@ -3,8 +3,12 @@ const exphbs = require("express-handlebars");
 const db = require("./models");
 const knex = require("knex");
 const app = express();
-const bcrypt = require("bcrypt-nodejs")
+const bcrypt = require("bcrypt-nodejs");
 const PORT = process.env.PORT || 3000;
+const signIn = require("./routes/signIn");
+const register = require("./routes/register");
+const profile = require("./routes/profile");
+const auth = require("./routes/authorization");
 
 require("dotenv").config();
 
@@ -25,16 +29,16 @@ app.set("view engine", "handlebars");
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
-// app.post("/signin", signin.signinAuthentication(db, bcrypt));
-// app.post("/register", (req, res) => {
-//   register.handleRegister(req, res, db, bcrypt);
-// });
-// app.get("/profile/:id", auth.requireAuth, (req, res) => {
-//   profile.handleProfileGet(req, res, db);
-// });
-// app.post("/profile/:id", auth.requireAuth, (req, res) => {
-//   profile.handleProfileUpdate(req, res, db);
-// });
+app.post("/home", signIn.signinAuthentication(db, bcrypt));
+app.post("/register", (req, res) => {
+  register.handleRegister(req, res, db, bcrypt);
+});
+app.get("/home/:id", auth.requireAuth, (req, res) => {
+  profile.handleProfileGet(req, res, db);
+});
+app.post("/home/:id", auth.requireAuth, (req, res) => {
+  profile.handleProfileUpdate(req, res, db);
+});
 
 const syncOptions = { force: false };
 
