@@ -2,39 +2,6 @@ const reload = () => {
     location.reload();
 };
 
-const clearPersonalInput = () => {
-    $("#nameInput").val("");
-    $("#phoneNumberInput").val("");
-    $('#confirmedTime').val("");
-};
-
-$(document).ready(() => {
-    $("#submitNewUser").on("click", (event) => {
-        let name = $("#nameInput").val().trim();
-        let number = $("#phoneNumberInput").val().trim();
-        let confirmedTime = $('#confirmedTime').val().trim()
-            .replace(/[^0-9 am pm]/g, '');
-        let correctedNumber = number
-            .replace(/[^0-9]/g, '');
-
-
-        const newUser = {
-            firstName: firstName,
-            lastName: lastName,
-            userName: correctedUserName,
-            city: correctedCity,
-            state: correctedState,
-            zip: correctedZip,
-            phoneNumber: correctedNumber,
-        }
-
-        ref.push(userInfo)
-        clearPersonalInput();
-        reload();
-    });
-)};
-
-
 const handleRegister = (req, res, db, bcrypt) => {
     const { email, name, password } = req.body;
     debugger;

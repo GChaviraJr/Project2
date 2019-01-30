@@ -1,19 +1,87 @@
 <div class="container">
-  <div class="row">
-    <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Example</h5>
-          <p>
-            <strong>ID</strong>: {{example.id}}</p>
-          <p>
-          <p>
-            <strong>Text</strong>: {{example.text}}</p>
-          <p>
-            <strong>Description:</strong> {{example.description}}</p>
-            <a href="/">← Back To Home</a>
+        <div class="jumbotron">
+            <div class="option animated infinite bounce">
+                <img src="assets/images/beerimage2.PNG" alt="beermug" height="50px">
+                <img src="assets/images/beerimage2.PNG" class="rounded float-right" alt="beermug" height="50px">
+            </div>
+            <h1 class="display-4" id="quote">"Wish you were beer.."</h1>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+
+
+    <form class="bg-white mt-3 ml-4" id="firstPageBody">
+        <div class="form-row ml-1 mt-2">
+            <div class="col-md-4 mb-3 mt-2">
+                <label for="validationServer01">First name</label>
+                <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name"
+                    required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-4 mb-3 ml-1 mt-2">
+                <label for="validationServer02">Last name</label>
+                <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name"
+                    required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-4 mb-3 ml-1">
+                <label for="validationServerUsername">Email</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                    </div>
+                    <input type="text" class="form-control is-invalid" id="validationServerEmail" placeholder="john@doe.com"
+                        aria-describedby="inputGroupPrepend3" required>
+                    <div class="invalid-feedback">
+                        Please enter your email address.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row ml-1">
+            <div class="col-md-3 mb-3 ml-1">
+                    <label for="validationServer05">Phone Number</label>
+                    <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="555-555-5555" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid phone number.
+                    </div>
+                </div>
+        </div>
+        <div class="form-group ml-2 mb-1">
+            <div class="form-check">
+                <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
+                <label class="form-check-label" for="invalidCheck3">
+                    Agree to terms and conditions
+                </label>
+                <div class="invalid-feedback">
+                    You must agree before submitting.
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary ml-3 mb-2 mt-2" type="submit">Submit form</button>
+    </form>
+
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>

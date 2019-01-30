@@ -1,0 +1,61 @@
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4" id="quote">"Wish you were beer.."</h1>
+        </div>
+    </div>
+        <div class="card">
+            <h5 class="card-header">Brewery Selected</h5>
+            <div class="card-body">
+                <table class="table">
+                    <tbody id="brewerySelected">
+
+                    </tbody>
+                </table>
+            </br>
+            <a class="btn btn-secondary" href="index.html" role="button">Return to Search Results</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <div class="card">
+                    <h5 class="card-header">Create New Contact</h5>
+                <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="nameInput">Name</label>
+                        <input type="name" class="form-control" id="nameInput" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumberInput">Phone Number</label>
+                        <input type="phone-number" class="form-control" id="phoneNumberInput" placeholder="555-123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="military time">Confirmed Time</label>
+                        <input type="input" class="form-control" id="confirmedTime" placeholder="9pm">
+                    </div>
+                    <button type="submit" class="btn btn-secondary" id="submitPersonalInfo">Submit</button>
+                </form>
+                </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="card">
+                    <h5 class="card-header">Contact List</h5>
+                <div class="card-body">
+                    <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="contactList">
+                    </tbody>
+                    </table>
+                    <br/>
+                    <button type="button" class="btn btn-secondary" id="submitSendSMS">Send Invite</button>
+                </div>
+                </div>
+            </div>
+        </div>
