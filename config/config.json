@@ -11,7 +11,8 @@
     "password": "",
     "database": "redis",
     "host": "localhost",
-    "dialect": "redis"
+    "dialect": "redis",
+    "port": 6379
   },
   "test": {
     "username": "root",

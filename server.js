@@ -1,7 +1,6 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const db = require("./models");
-const knex = require("knex");
 const app = express();
 const bcrypt = require("bcrypt-nodejs");
 const PORT = process.env.PORT || 3000;

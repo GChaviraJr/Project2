@@ -25,25 +25,44 @@ const handleSignin = (db, bcrypt, req, res) => {
   if (!email || !password) {
     return Promise.reject("incorrect form submission");
   }
-  return db
-    .select("email", "hash")
-    .from("login")
-    .where("email", "=", email)
-    .then(data => {
-      const isValid = bcrypt.compareSync(password, data[0].hash);
+  db.Login.findAll({
+    where: {
+      email: email
+    }
+  }).then(data => {
+    const isValid = bcrypt.compareSync(password, data[0].hash);
       if (isValid) {
-        return db
-          .select("*")
-          .from("users")
-          .where("email", "=", email)
-          .then(user => user[0])
-          .catch(err => res.status(400).json("unable to get user"))
-      } else {
-        return Promise.reject("wrong credentials");
-      }
+        db.User.findAll({
+          where: {
+            email: email
+          }
+        }).then(user => user[0])
+        .catch(err => res.status(400).json("unable to get user"))
+    } else {
+      return Promise.reject("wrong credentials");
+    }
     })
     .catch(err => err);
-};
+      }
+//   return db
+//     .select("email", "hash")
+//     .from("Logins")
+//     .where("email", "=", email)
+//     .then(data => {
+//       const isValid = bcrypt.compareSync(password, data[0].hash);
+//       if (isValid) {
+//         return db
+//           .select("*")
+//           .from("Users")
+//           .where("email", "=", email)
+//           .then(user => user[0])
+//           .catch(err => res.status(400).json("unable to get user"))
+//       } else {
+//         return Promise.reject("wrong credentials");
+//       }
+//     })
+//     .catch(err => err);
+// };
 
 const getAuthTokenId = (req, res) => {
   const { authorization } = req.headers;
@@ -51,7 +70,7 @@ const getAuthTokenId = (req, res) => {
     if (err || !reply) {
       return res.status(401).send("Unauthorized");
     }
-    return res.json({id: reply})
+    return res.json({id: reply});
   });
 };
 
@@ -59,8 +78,7 @@ const signinAuthentication = (db, bcrypt) => (req, res) => {
   const { authorization } = req.headers;
   return authorization ? getAuthTokenId(req, res)
     : handleSignin(db, bcrypt, req, res)
-      .then(data =>
-        data.id && data.email ? createSession(data) : Promise.reject(data))
+      .then(data => data.id && data.email ? createSession(data) : Promise.reject(data))
       .then(session => res.json(session))
       .catch(err => res.status(400).json(err));
 };
