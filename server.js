@@ -3,23 +3,18 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const db = require("./models");
 
-// const knex = require("knex");
-
-
 const app = express();
-// const bcrypt = require("bcrypt-nodejs");
+const bcrypt = require("bcrypt-nodejs");
 const PORT = process.env.PORT || 3000;
-// const morgan = require("morgan");
+const morgan = require("morgan");
 
 const signIn = require("./routes/signIn");
 const register = require("./routes/register");
 const profile = require("./routes/profile");
 const auth = require("./routes/authorization");
 
-require("dotenv").config();
-
 // Middleware
-// app.use(morgan("combined"));
+app.use(morgan("combined"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -36,10 +31,10 @@ app.set("view engine", "handlebars");
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
-// app.post("/home", signIn.signinAuthentication(db, bcrypt));
-// app.post("/register", (req, res) => {
-//   register.handleRegister(req, res, db, bcrypt);
-// });
+app.post("/home", signIn.signinAuthentication(db, bcrypt));
+app.post("/register", (req, res) => {
+  register.handleRegister(req, res, db, bcrypt);
+});
 // app.get("/home/:id", auth.requireAuth, (req, res) => {
 //   profile.handleProfileGet(req, res, db);
 // });
