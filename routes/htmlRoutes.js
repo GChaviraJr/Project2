@@ -29,6 +29,22 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/input", function(req, res) {
+    setTimeout(function() {
+      db.Selected_Location.findAll({
+        limit: 1,
+        where: {},
+        order: [["createdAt", "DESC"]]
+      }).then(function(dbData) {
+        console.log(dbData[0].dataValues.name);
+        res.render("input", {
+          breweryName: dbData[0].dataValues.name,
+          breweryAddress: dbData[0].dataValues.address
+        });
+      });
+    }, 1000);
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");

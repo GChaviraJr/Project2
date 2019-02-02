@@ -22,9 +22,25 @@ var API = {
       type: "GET"
     });
   },
-  deleteRestaurants: function(id) {
+  deleteRestaurants: function() {
     return $.ajax({
       url: "api/examples/",
+      type: "DELETE"
+    });
+  },
+  createSelectedLocation: function(locationInput) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/selectedLocation",
+      data: JSON.stringify(locationInput)
+    });
+  },
+  deleteSelectedLocations: function() {
+    return $.ajax({
+      url: "api/selectedLocation/",
       type: "DELETE"
     });
   }
@@ -32,9 +48,15 @@ var API = {
 
 var deleteRestaurantsInCurrentDatabase = function() {
   API.deleteRestaurants().then(function() {
-    console.log("DELETE!");;
+    console.log("DELETE!");
   });
 };
+
+// var deleteSelectedLocations = function() {
+//   API.deleteSelectedLocations().then(function() {
+//     console.log("Delected Selected Location Table");
+//   });
+// };
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshRestaurants = function() {
@@ -48,13 +70,15 @@ var refreshRestaurants = function() {
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": restaurant.id
+          "data-id": restaurant.id,
+          "data-name": restaurant.name,
+          "data-address": restaurant.address
         })
         .append($a);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("Select");
+      var $button = $(
+        '<a href="/input" class="btn btn-danger float-right delete" role="button">Select</a>'
+      );
 
       $li.append($button);
 
@@ -71,13 +95,14 @@ var refreshRestaurants = function() {
 // Save the new example to the db and refresh the list
 var handleUserInput = function(event) {
   event.preventDefault();
+  // deleteSelectedLocations();
   deleteRestaurantsInCurrentDatabase();
   var cityInput = {
     text: $userCityInput.val().trim()
   };
 
   if (!cityInput.text) {
-    alert("You must enter an example text and description!");
+    alert("You must enter a city!");
     return;
   }
 
@@ -90,16 +115,30 @@ var handleUserInput = function(event) {
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
+var handleSelectButtonClick = function() {
+  var idToSelect = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteRestaurants(idToDelete).then(function() {
+  var chosenName = $(this)
+    .parent()
+    .attr("data-name");
+
+  var chosenAddress = $(this)
+    .parent()
+    .attr("data-address");
+
+  var locationInput = {
+    name: chosenName,
+    address: chosenAddress
+  };
+  console.log(idToSelect, chosenName, chosenAddress);
+
+  API.createSelectedLocation(locationInput).then(function() {
     refreshRestaurants();
   });
 };
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleUserInput);
-$restaurantList.on("click", ".delete", handleDeleteBtnClick);
+$restaurantList.on("click", ".delete", handleSelectButtonClick);

@@ -48,6 +48,26 @@ module.exports = function(app) {
         // })
       });
   });
+
+  app.post("/api/selectedLocation", (req, res) => {
+    db.Selected_Location.create({
+      name: req.body.name,
+      address: req.body.address
+    }).then(() => {
+      console.log("added selected location");
+    });
+  });
+
+  app.delete("/api/selectedLocation", function(req, res) {
+    db.Selected_Location.destroy({
+      where: {},
+      truncate: true
+    }).then(function() {
+      res.render("input");;
+      console.log("all selected locations deleted");
+    });
+  });
+
   app.delete("/api/examples/", function(req, res) {
     db.Results.destroy({
       where: {},

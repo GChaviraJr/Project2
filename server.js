@@ -5,7 +5,7 @@ const db = require("./models");
 // const knex = require("knex");
 const app = express();
 // const bcrypt = require("bcrypt-nodejs");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 // const morgan = require("morgan");
 
 const signIn = require("./routes/signIn");
