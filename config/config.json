@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Sb1598951",
+    "password": null,
     "database": "brewery_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
