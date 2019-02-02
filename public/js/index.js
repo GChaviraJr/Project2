@@ -32,7 +32,7 @@ var API = {
 
 var deleteRestaurantsInCurrentDatabase = function() {
   API.deleteRestaurants().then(function() {
-    console.log("DELETE!");;
+    console.log("DELETE!");
   });
 };
 
@@ -43,7 +43,7 @@ var refreshRestaurants = function() {
       var $a = $("<a>")
         .text(restaurant.name)
         .append(" " + restaurant.address)
-        .attr("href", restaurant.URL);
+        .attr("href", "/input");
 
       var $li = $("<li>")
         .attr({
