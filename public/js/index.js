@@ -65,7 +65,7 @@ var refreshRestaurants = function() {
       var $a = $("<a>")
         .text(restaurant.name)
         .append(" " + restaurant.address)
-        .attr("href", restaurant.URL);
+        .attr("href", "/input");
 
       var $li = $("<li>")
         .attr({

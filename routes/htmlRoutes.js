@@ -11,6 +11,20 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/register", function(req, res) {
+    db.Results.findAll({}).then(function() {
+      res.render("../views/register.handlebars", {
+      });
+    });
+  });
+ 
+  app.get("/input", function(req, res) {
+    db.Results.findAll({}).then(function() {
+      res.render("../views/input.handlebars", {
+      });
+    });
+  });
+
   app.get("/restaurants", function(req, res) {
     res.render("index", {
       msg: "Welcome!",
