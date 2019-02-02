@@ -28,13 +28,46 @@
 //   return db
 //     .select("email", "hash")
 //     .from("login")
+
+const handleSignin = (db, bcrypt, req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return Promise.reject("incorrect form submission");
+  }
+  db.Login.findAll({
+    where: {
+      email: email
+    }
+  }).then(data => {
+    const isValid = bcrypt.compareSync(password, data[0].hash);
+      if (isValid) {
+        db.User.findAll({
+          where: {
+            email: email
+          }
+        }).then(user => user[0])
+        .catch(err => res.status(400).json("unable to get user"))
+    } else {
+      return Promise.reject("wrong credentials");
+    }
+    })
+    .catch(err => err);
+      }
+//   return db
+//     .select("email", "hash")
+//     .from("Logins")
+
 //     .where("email", "=", email)
 //     .then(data => {
 //       const isValid = bcrypt.compareSync(password, data[0].hash);
 //       if (isValid) {
 //         return db
 //           .select("*")
+
 //           .from("users")
+
+//           .from("Users")
+
 //           .where("email", "=", email)
 //           .then(user => user[0])
 //           .catch(err => res.status(400).json("unable to get user"))
@@ -44,6 +77,7 @@
 //     })
 //     .catch(err => err);
 // };
+
 
 // const getAuthTokenId = (req, res) => {
 //   const { authorization } = req.headers;
@@ -64,6 +98,26 @@
 //       .then(session => res.json(session))
 //       .catch(err => res.status(400).json(err));
 // };
+
+const getAuthTokenId = (req, res) => {
+  const { authorization } = req.headers;
+  return redisClient.get(authorization, (err, reply) => {
+    if (err || !reply) {
+      return res.status(401).send("Unauthorized");
+    }
+    return res.json({id: reply});
+  });
+};
+
+const signinAuthentication = (db, bcrypt) => (req, res) => {
+  const { authorization } = req.headers;
+  return authorization ? getAuthTokenId(req, res)
+    : handleSignin(db, bcrypt, req, res)
+      .then(data => data.id && data.email ? createSession(data) : Promise.reject(data))
+      .then(session => res.json(session))
+      .catch(err => res.status(400).json(err));
+};
+
 
 // module.exports = {
 //   signinAuthentication: signinAuthentication,
