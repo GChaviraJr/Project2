@@ -1,111 +1,79 @@
 <div class="container">
-  <div class="jumbotron">
-    <div class="option animated infinite bounce">
-      <img src="assets/images/beerimage2.PNG" alt="beermug" height="50px">
-      <img src="assets/images/beerimage2.PNG" class="rounded float-right" alt="beermug" height="50px">
+        <div class="jumbotron">
+            <div class="option animated infinite bounce">
+                <img src="assets/images/beerimage2.PNG" alt="beermug" height="50px">
+                <img src="assets/images/beerimage2.PNG" class="rounded float-right" alt="beermug" height="50px">
+            </div>
+            <h1 class="display-4" id="quote">"Wish you were beer.."</h1>
+        </div>
     </div>
-    <h1 class="display-4" id="quote">"Wish you were beer.."</h1>
-  </div>
-</div>
 
 
-<form class="bg-white mt-3 ml-4" id="firstPageBody">
-  <div class="form-row ml-1 mt-2">
-    <div class="col-md-4 mb-3 mt-2">
-      <label for="validationServer01">Full Name</label>
-      <input type="text" class="form-control is-valid" name="name" id="validationServer01" placeholder="John Doe"
-        required>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-    </div>
-    <div class="col-md-4 mb-3 ml-1 mt-2">
-      <label for="validationServerUsername">Email</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend3">@</span>
+    <form class="bg-white mt-3 ml-4" id="firstPageBody">
+        <div class="form-row ml-1 mt-2">
+            <div class="col-md-4 mb-3 mt-2">
+                <label for="validationServer01">Full Name</label>
+                <input type="text" class="form-control is-valid" name="name" id="validationServer01" placeholder="John Doe"
+                    required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-4 mb-3 ml-1">
+                <label for="validationServerUsername">Email</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                    </div>
+                    <input type="text" class="form-control is-invalid" name="email" id="validationServerEmail" placeholder="john@doe.com"
+                        aria-describedby="inputGroupPrepend3" required>
+                    <div class="invalid-feedback">
+                        Please enter your email address.
+                    </div>
+                </div>
+            </div>
         </div>
-        <input type="text" class="form-control is-invalid" name="email" id="validationServerEmail" placeholder="john@doe.com"
-          aria-describedby="inputGroupPrepend3" required>
-        <div class="invalid-feedback">
-          Please enter your email address.
+        <div class="form-row ml-1">
+            <div class="col-md-3 mb-3 ml-1">
+                    <label for="validationServer05">Phone Number</label>
+                    <input type="text" class="form-control is-invalid" name="phone" id="validationServer05" placeholder="555-555-5555" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid phone number.
+                    </div>
+                </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="form-row ml-1">
-    <div class="col-md-3 mb-3 ml-1">
-      <label for="validationServer05">Phone Number</label>
-      <input type="text" class="form-control is-invalid" name="phone" id="validationServer05" placeholder="555-555-5555"
-        required>
-      <div class="invalid-feedback">
-        Please provide a valid phone number.
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4 mb-3 mt-2">
-    <label for="validationServerUsername">Password</label>
-    <div class="form-group row">
-      <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" name="password" id="inputPassword3" placeholder="Password">
-      </div>
-    </div>
-  </div>
-  <div class="form-group ml-2 mb-1">
-    <div class="form-check">
-      <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
-      <label class="form-check-label" for="invalidCheck3">
-        Agree to terms and conditions
-      </label>
-      <div class="invalid-feedback">
-        You must agree before submitting.
-      </div>
-    </div>
-  </div>
-  <button class="btn btn-primary ml-3 mb-2 mt-2" id="registerSubmitBtn" type="submit">Submit form</button>
-</form>
+        <div class="form-group ml-2 mb-1">
+            <div class="form-check">
+                <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
+                <label class="form-check-label" for="invalidCheck3">
+                    Agree to terms and conditions
+                </label>
+                <div class="invalid-feedback">
+                    You must agree before submitting.
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary ml-3 mb-2 mt-2" type="submit" method="POST">Submit form</button>
+    </form>
+
 
 <script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-  $(document).ready(function () {
-    'use strict';
-    window.addEventListener('load', function () {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-
-    function onSubmitSignIn() {
-      const registerForm = $("#firstPageBody")
-      const name = registerForm.find("input[name=name]").val().trim()
-      const email = registerForm.find("input[name=email]").val().trim()
-      const phone = registerForm.find("input[name=phone]").val().trim()
-      const password = registerForm.find("input[name=password]").val().trim()
-      const user = {
-        email: email,
-        phone: phone,
-        password: password,
-        name: name
-      }
-
-      $.post("/register", user)
-        .done(function (data) {
-          console.log("Data Loaded: " + data);
-        });
-    }
-    $("#firstPageBody").on("submit", function (event) {
-      event.preventDefault()
-      onSubmitSignIn()
-    })
-  });
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
 </script>

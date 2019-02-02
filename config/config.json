@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": null,
+    "password": "soizic65",
     "database": "brewery_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
@@ -11,8 +11,7 @@
     "password": "",
     "database": "redis",
     "host": "localhost",
-    "dialect": "redis",
-    "port": 6379
+    "dialect": "redis"
   },
   "test": {
     "username": "root",
