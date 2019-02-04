@@ -18,7 +18,7 @@ const createSession = (user) => {
       email: email,
       id: id
     }
-  })
+  });
   const { email, id } = user;
   const token = signToken(email);
   // db.User.findAll({
@@ -28,14 +28,13 @@ const createSession = (user) => {
   //   }
   // });
   return setToken(token, id);
-    // .then(() => {
-    //   return { success: "true", userId: id, token, user };
-    // })
-    // .catch(console.log);
+  // .then(() => {
+  //   return { success: "true", userId: id, token, user };
+  // })
+  // .catch(console.log);
 };
 
 const handleSignin = (db, req, res) => {
- 
   // const { email, password } = req.body;
   // if (!email || !password) {
   //   return Promise.reject("incorrect form submission");
@@ -45,23 +44,24 @@ const handleSignin = (db, req, res) => {
       email: email,
       id: id
     }
-  })
-  .then(data => {
+  }).then(data => {
     const isValid = bcrypt.compareSync(password, data[0].hash);
-      if (isValid) {
-        db.User.findAll({
-          where: {
-            email: email,
-            password: password
-          }
-        })
-        // .then(user => user[0])
-    //     .catch(err => res.status(400).json("unable to get user"))
-    // } else {
-    //   return Promise.reject("wrong credentials");
-    // }
-    // })
-    // .catch(err => err);
+    if (isValid) {
+      db.User.findAll({
+        where: {
+          email: email,
+          password: password
+        }
+      });
+      // .then(user => user[0])
+      //     .catch(err => res.status(400).json("unable to get user"))
+      // } else {
+      //   return Promise.reject("wrong credentials");
+      // }
+      // })
+      // .catch(err => err);
+    }
+  });
 };
 
 const getAuthTokenId = (req, res) => {
@@ -82,7 +82,7 @@ var signinAuthentication = function signinAuthentication(db, bcrypt) {
       ? getAuthTokenId(req, res)
       : handleSignin(db, bcrypt, req, res)
         .then(function(data) {
-          console.log(data)
+          console.log(data);
           const isValid = bcrypt.compareSync(password, data[0].hash);
             if (isValid) {
               return createSession(data[0]);
