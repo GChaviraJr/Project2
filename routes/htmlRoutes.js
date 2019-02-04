@@ -3,16 +3,36 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
+    db.User.findAll({}).then(function() {
+      res.render("../views/home.handlebars");
+    });
+  });
+
+  app.get("/", function(req, res) {
     db.Results.findAll({}).then(function(dbRestaurants) {
-      res.render("home", {
+      res.render("../views/home.handlebars", {
         msg: "Welcome!",
         restaurants: dbRestaurants
       });
     });
   });
 
+  app.get("/register", function(req, res) {
+    db.Results.findAll({}).then(function() {
+      res.render("../views/register.handlebars", {
+      });
+    });
+  });
+
+  app.get("/input", function(req, res) {
+    db.Results.findAll({}).then(function() {
+      res.render("../views/input.handlebars", {
+      });
+    });
+  });
+
   app.get("/restaurants", function(req, res) {
-    res.render("index", {
+    res.render("../views/input.handlebars", {
       msg: "Welcome!",
       restaurants: apiResults
     });

@@ -1,5 +1,5 @@
 const handleProfileGet = (req, res, db) => {
-  const User = db.User
+  const User = db.User;
   const { id } = req.params;
   User.findAll({
     where: {
@@ -12,18 +12,6 @@ const handleProfileGet = (req, res, db) => {
       res.status(400).json("Not found");
     }
   }).catch(err => res.status(400).json("error getting user"));
-
-  // db.select("*")
-  //   .from("users")
-  //   .where({ id })
-  //   .then(user => {
-  //     if (user.length) {
-  //       res.json(user[0])
-  //     } else {
-  //       res.status(400).json("Not found");
-  //     }
-  //   })
-  //   .catch(err => res.status(400).json("error getting user"));
 };
 
 const handleProfileUpdate = (req, res, db) => {
@@ -32,7 +20,7 @@ const handleProfileUpdate = (req, res, db) => {
 
   db.User.update(req.body, {
     where: {
-      id: id,
+      id: id
     }
   }).then(resp => {
     if (resp) {
@@ -41,18 +29,6 @@ const handleProfileUpdate = (req, res, db) => {
       res.status(400).json("Not found");
     }
   }).catch(err => res.status(400).json("error updating user"));
-
-  // db("users")
-  //   .where({ id })
-  //   .update({ name: name })
-  //   .then(resp => {
-  //     if (resp) {
-  //       res.json("success");
-  //     } else {
-  //       res.status(400).json("Not found");
-  //     }
-  //   })
-  //   .catch(err => res.status(400).json("error updating user"));
 };
 
 module.exports = {

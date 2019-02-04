@@ -63,7 +63,7 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-primary ml-3 mb-2 mt-2" id="registerSubmitBtn" type="submit">Submit form</button>
+  <button href="/" class="btn btn-primary ml-3 mb-2 mt-2" id="registerSubmitBtn" type="submit">Submit Form</button>
 </form>
 
 <script>
@@ -100,7 +100,7 @@
 
       $.post("/register", user)
         .done(function (data) {
-          console.log("Data Loaded: " + data);
+          console.log("User Data Loaded: " + data);
         });
     }
     $("#firstPageBody").on("submit", function (event) {

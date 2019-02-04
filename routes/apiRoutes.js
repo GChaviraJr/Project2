@@ -1,5 +1,6 @@
 "use strict";
 
+const bcrypt = require("bcrypt-nodejs");
 var yelp = require("yelp-fusion");
 var apiKey =
   "eGyFYoGa3oYrHwELLpuXsE9A1l9W6d6AoJszCKMPa3M9SNgR2kx1md-nelFS1jJdfOb1sCD3knBmuWA7kDTZSoZMehkn0-Avx1VDY6QMhAX45RpIuKyxSBZ53eTsW3Yx";
@@ -9,12 +10,10 @@ var db = require("../models");
 module.exports = function(app) {
   // GET route for getting all of the users
   app.get("/home", (req, res) => {
-
-    db.User.findAll({}).then(dbusers => {
-      res.json(dbusers);
+    db.User.findAll({}).then(dbUser => {
+      res.json(dbUser);
     });
   });
-  
 
   app.get("/api/restaurants", function(req, res) {
     db.Results.findAll({}).then(function(dbRestaurants) {
@@ -59,40 +58,19 @@ module.exports = function(app) {
     });
   });
 
-// Retreiving data hash Home
-// app.post("/home", (req, res) => {
-//   db.Login.create({
-//     email: req.body.email,
-//     hash: req.body
-//   });
-//   .then((dbLogin) => {
-//     res.json(dbLogin);
-//   });
-// });
-
-  // Retreiving data hash Home
-  app.post("/home", (req, res) => {
-    db.Login.create({
-      email: req.body.email,
-      hash: req.body
-    })
-    .then((dbLogin) => {
-      res.json(dbLogin);
-    });
-  });
-
   // Retrieving data from User Register
+
   app.post("/register", (req, res) => {
     db.User.create({
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
-      password: req.body.password
+      password: req.body.password,
+      hash: bcrypt.hashSync(req.body.password)
     }).then((dbUser) => {
       res.json(dbUser);
-    });
+    }); 
   });
-
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {

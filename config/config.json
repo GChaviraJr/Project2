@@ -7,12 +7,11 @@
     "dialect": "mysql"
   },
   "REDIS": {
-    "username": "",
-    "password": "",
-    "database": "redis",
-    "host": "localhost",
-    "dialect": "redis",
-    "port": 6379
+    "Host": "ec2-3-82-181-170.compute-1.amazonaws.com",
+    "User": "h",
+    "Port": 32449,
+    "Password": "pd41f816fc2f82ecc73d027e05693fcede68d4b8b60869e91dec017cbe8570456",
+    "URI": "redis://h:pd41f816fc2f82ecc73d027e05693fcede68d4b8b60869e91dec017cbe8570456@ec2-3-82-181-170.compute-1.amazonaws.com:32449"
   },
   "test": {
     "username": "root",
@@ -23,7 +22,7 @@
     "logging": false
   },
   "production": {
-    "use_env_variable": "JAWSDB_URL",
+    "use_env_variable": "mysql://tcxw4h6j835hbktc:r9m40bgid005b9lv@axxb6a0z2kydkco3.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/h4yu485bd9ylgmsx",
     "dialect": "mysql"
   }
 }

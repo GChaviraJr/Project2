@@ -1,4 +1,5 @@
 require("dotenv").config();
+const bodyParser = require("body-parser");
 const express = require("express");
 const exphbs = require("express-handlebars");
 const db = require("./models");
@@ -15,9 +16,11 @@ const auth = require("./routes/authorization");
 
 // Middleware
 app.use(morgan("combined"));
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+
 
 // Handlebars
 app.engine(
@@ -32,12 +35,10 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 app.post("/home", signIn.signinAuthentication(db, bcrypt));
-app.post("/register", (req, res) => {
-  register.handleRegister(req, res, db, bcrypt);
-});
+app.post("/register", (req, res) => { register.handleRegister(req, res, db, bcrypt)});
 // app.get("/home/:id", auth.requireAuth, (req, res) => {
 //   profile.handleProfileGet(req, res, db);
-// });
+// })
 // app.post("/home/:id", auth.requireAuth, (req, res) => {
 //   profile.handleProfileUpdate(req, res, db);
 // });

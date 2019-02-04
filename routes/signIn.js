@@ -1,10 +1,11 @@
 const jwt = require("jsonwebtoken");
 const redis = require("redis");
+const isSignedIn = false;
 
 const redisClient = redis.createClient(process.env.REDIS);
 
-const signToken = (user) => {
-  const jwtPayload = { user };
+const signToken = (username) => {
+  const jwtPayload = { username };
   return jwt.sign(jwtPayload, "JWT_SECRET_KEY", { expiresIn: "2 days" });
 };
 
@@ -13,28 +14,25 @@ const setToken = (key, value) => Promise.resolve(redisClient.set(key, value));
 const createSession = (user) => {
   const { email, id } = user;
   const token = signToken(email);
+  db.User.findAll({
+    where: {
+      email: email,
+      id: id
+    }
+  })
   return setToken(token, id)
     .then(() => {
-      return { success: "true", userId: id, token, user }
+      return { success: "true", userId: id, token, user };
     })
     .catch(console.log);
 };
-
-// const handleSignin = (db, bcrypt, req, res) => {
-//   const { email, password } = req.body;
-//   if (!email || !password) {
-//     return Promise.reject("incorrect form submission");
-//   }
-//   return db
-//     .select("email", "hash")
-//     .from("login")
 
 const handleSignin = (db, bcrypt, req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return Promise.reject("incorrect form submission");
   }
-  db.Login.findAll({
+  db.User.findAll({
     where: {
       email: email
     }
@@ -64,15 +62,27 @@ const getAuthTokenId = (req, res) => {
   });
 };
 
-const signinAuthentication = (db, bcrypt) => (req, res) => {
-  const { authorization } = req.headers;
-  return authorization ? getAuthTokenId(req, res)
-    : handleSignin(db, bcrypt, req, res)
-      .then(data => data.id && data.email ? createSession(data) : Promise.reject(data))
-      .then(session => res.json(session))
-      .catch(err => res.status(400).json(err));
-};
+var signinAuthentication = function signinAuthentication(db, bcrypt) {
+  return function(req, res) {
+    var authorization = req.headers.authorization;
+    const isSignedIn = false;
 
+    return authorization
+      ? getAuthTokenId(req, res)
+      : handleSignin(db, bcrypt, req, res)
+        .then(function(data) {
+          return data.id && data.email
+            ? createSession(data)
+            : Promise.reject(data);
+          })
+          .then(function(session) {
+            isSignedIn = true;
+            return res.json(session);
+        }).catch(function (err) {
+          return res.status(400).json(err);
+        });
+  };
+};
 
 module.exports = {
   signinAuthentication: signinAuthentication,
