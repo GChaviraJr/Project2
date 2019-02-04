@@ -34,7 +34,7 @@ app.set("view engine", "handlebars");
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
-app.post("/home", signIn.signinAuthentication(db, bcrypt));
+
 app.post("/register", (req, res) => { register.handleRegister(req, res, db, bcrypt)});
 // app.get("/home/:id", auth.requireAuth, (req, res) => {
 //   profile.handleProfileGet(req, res, db);

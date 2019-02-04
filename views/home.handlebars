@@ -111,9 +111,6 @@
     $.ajax({
         type: "POST",
         url: "/home",
-        success: function() {
-          window.location.replace("https://localhost:3000/input")
-        },
         beforeSend: function (xhr) {
           xhr.setRequestHeader("Content-Type", "application/json")
         }.then(response => response.json())
