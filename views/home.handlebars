@@ -11,8 +11,8 @@
   </div>
 
 
-  <div class="container">
-    <form id="firstPageBody">
+  <div class="container" id="firstPageBody">
+    <form id="signIn">
       <div>
         <h3 class="text-white">
           Sign in or sign up for a new account
@@ -102,25 +102,28 @@
 <script>
   $(document).ready(function () {
     function onSubmitSignIn() {
+      const signinForm = $("#signIn")
+      const email = signinForm.find("input[name=email]").val().trim()
+      const password = signinForm.find("input[name=password]").val().trim()
+      const user = {
+        email: email,
+        password: password
+      }
 
-    $.get("/home")
+      $.post("/home", user)
         .done(function (data) {
-          console.log("User Data Loaded" + data)
-        })
+          console.log("Post completed: " + data);
+        });
+    }
 
-    $.ajax({
-        type: "POST",
-        url: "/home",
-        beforeSend: function (xhr) {
-          xhr.setRequestHeader("Content-Type", "application/json")
-        }.then(response => response.json())
-          })
+  $("#signIn").on("submit", function (event) {
+    event.preventDefault()
+    onSubmitSignIn()
 
-    $("#firstPageBody").on("submit", function (event) {
-      event.preventDefault()
-      onSubmitSignIn()
-    })
-  }
   })
+
+  })
+
+
 
 </script>

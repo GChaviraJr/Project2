@@ -85,7 +85,7 @@
       });
     }, false);
 
-    function onSubmitSignIn() {
+    function onSubmitRegister() {
       const registerForm = $("#firstPageBody")
       const name = registerForm.find("input[name=name]").val().trim()
       const email = registerForm.find("input[name=email]").val().trim()
@@ -98,14 +98,14 @@
         name: name
       }
 
-      $.post("/register", user)
+      $.post("/register")
         .done(function (data) {
           console.log("User Data Loaded: " + data);
         });
     }
     $("#firstPageBody").on("submit", function (event) {
       event.preventDefault()
-      onSubmitSignIn()
+      onSubmitRegister()
     })
   });
 </script>

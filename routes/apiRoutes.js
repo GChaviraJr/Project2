@@ -76,10 +76,12 @@ module.exports = function(app) {
   });
 
   // Authentication Home
-  app.post("/home", (req, res) => {
-    signIn.signinAuthentication(db, bcrypt);
-    res.redirect("/input:id", auth.requireAuth);
-  });
+app.post("/home", signIn.signinAuthentication(db, bcrypt))
+
+  // app.post("/home", (req, res) => {
+  //   signIn.redisClient;
+  //   signIn.signinAuthentication(db, bcrypt);
+  // });
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
