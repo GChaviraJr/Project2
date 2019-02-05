@@ -67,12 +67,14 @@ var signinAuthentication = function signinAuthentication(db, bcrypt) {
     return authorization
       ? getAuthTokenId(req, res)
       : handleSignin(db, bcrypt, req, res)
-        .then(function(data) {
-          return data.id && data.email
-            ? createSession(data)
-            : Promise.reject(data);
+        .then(function(user) {
+          console.log(user);
+          return user.id && user.email
+            ? createSession(user)
+            : Promise.reject(user);
           })
           .then(function(session) {
+            console.log(session);
             return res.json(session);
         }).catch(function (err) {
           return res.status(400).json("Unable to start session");
