@@ -113,17 +113,13 @@
       $.post("/home", user)
         .done(function (data) {
           console.log("Post completed: " + data);
-        });
+        })
     }
 
-  $("#signIn").on("submit", function (event) {
-    event.preventDefault()
-    onSubmitSignIn()
+    $("#signIn").on("submit", function (event) {
+      event.preventDefault()
+      onSubmitSignIn()
+    })
 
   })
-
-  })
-
-
-
 </script>

@@ -98,7 +98,7 @@
         name: name
       }
 
-      $.post("/register")
+      $.post("/register", user)
         .done(function (data) {
           console.log("User Data Loaded: " + data);
         });

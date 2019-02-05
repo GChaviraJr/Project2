@@ -35,33 +35,33 @@ const createSession = (user) => {
 };
 
 const handleSignin = (db, req, res) => {
-  // const { email, password } = req.body;
-  // if (!email || !password) {
-  //   return Promise.reject("incorrect form submission");
-  // }
+  if (!email || !password) {
+    return Promise.reject("incorrect form submission");
+  }
   return db.User.findAll({
     where: {
       email: email,
       id: id
     }
-  }).then(data => {
-    const isValid = bcrypt.compareSync(password, data[0].hash);
-    if (isValid) {
-      db.User.findAll({
-        where: {
-          email: email,
-          password: password
-        }
-      });
-      // .then(user => user[0])
-      //     .catch(err => res.status(400).json("unable to get user"))
-      // } else {
-      //   return Promise.reject("wrong credentials");
-      // }
-      // })
-      // .catch(err => err);
-    }
   });
+  // .then(data => {
+  //   const isValid = bcrypt.compareSync(password, data[0].hash);
+  //   if (isValid) {
+  //     db.User.findAll({
+  //       where: {
+  //         email: email,
+  //         password: password
+  //       }
+  //     });
+  // .then(user => user[0])
+  //     .catch(err => res.status(400).json("unable to get user"))
+  // } else {
+  //   return Promise.reject("wrong credentials");
+  // }
+  // })
+  // .catch(err => err);
+  //   }
+  // });
 };
 
 const getAuthTokenId = (req, res) => {
