@@ -13,12 +13,5 @@
     "database": "awod5tln2rdg5fmo",
     "host": "axxb6a0z2kydkco3.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
-  },
-  "REDIS-production": {
-    "Host": "ec2-54-205-103-126.compute-1.amazonaws.com",
-    "User": "h",
-    "Port": 29479,
-    "Password": "pcff4ee4500c9811e75eca9cbff8b9b89035698cf62376c0a6c9a8053999027a3",
-    "URI": "redis://h:pcff4ee4500c9811e75eca9cbff8b9b89035698cf62376c0a6c9a8053999027a3@ec2-54-205-103-126.compute-1.amazonaws.com:29479"
   }
 }
