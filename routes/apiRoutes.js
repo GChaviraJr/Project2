@@ -5,8 +5,7 @@ const auth = require("./authorization");
 const signIn = require("./signIn");
 const bcrypt = require("bcrypt-nodejs");
 var yelp = require("yelp-fusion");
-var apiKey =
-"eGyFYoGa3oYrHwELLpuXsE9A1l9W6d6AoJszCKMPa3M9SNgR2kx1md-nelFS1jJdfOb1sCD3knBmuWA7kDTZSoZMehkn0-Avx1VDY6QMhAX45RpIuKyxSBZ53eTsW3Yx";
+YELP_API_KEY = process.env.YELP_API_KEY;
 var client = yelp.client(apiKey);
 var db = require("../models");
 
@@ -101,7 +100,7 @@ app.post("/input:id", (req, res, db, bcrypt) => {
   auth.requireAuth(db, bcrypt);
 });
 app.get("/home", (req, res) => {
-  
+
 });
 
 // Delete an example by id
