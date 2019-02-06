@@ -126,8 +126,8 @@ $(document).ready(function() {
           timeChosen;
         console.log(message);
 
-        const SID = process.env.TWILIO_SID;
-        const Key = process.env.TWILIO_KEY;
+        const SID = "ACde7d929d4b9b0f7e32b6f0f553fe9667";
+        const Key = "41cdc646ad2521c5e86216b3b17dca1b";
         database.ref("contacts").once("value", function(snapshot) {
           snapshot.forEach(function(childSnapshot) {
             var childKey = childSnapshot.key;
