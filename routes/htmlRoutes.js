@@ -3,25 +3,25 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Results.findAll({}).then(function(dbRestaurants) {
-      res.render("../views/home.handlebars", {
-        msg: "Welcome!",
-        restaurants: dbRestaurants
-      });
-    }).catch(console.error);
+    db.Results.findAll({})
+      .then(function(dbRestaurants) {
+        res.render("../views/home.handlebars", {
+          msg: "Welcome!",
+          restaurants: dbRestaurants
+        });
+      })
+      .catch(console.error);
   });
 
   app.get("/register", function(req, res) {
     db.Results.findAll({}).then(function() {
-      res.render("../views/register.handlebars", {
-      });
+      res.render("../views/register.handlebars", {});
     });
   });
- 
+
   app.get("/input", function(req, res) {
     db.Results.findAll({}).then(function() {
-      res.render("../views/input.handlebars", {
-      });
+      res.render("../views/input.handlebars", {});
     });
   });
 

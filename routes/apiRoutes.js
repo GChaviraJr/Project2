@@ -79,37 +79,35 @@ module.exports = function(app) {
   });
 
   // Retreiving data hash Home
- // Retrieving data from User Register
+  // Retrieving data from User Register
 
- app.post("/register", (req, res) => {
-  db.User.create({
-    name: req.body.name,
-    email: req.body.email,
-    phone: req.body.phone,
-    password: req.body.password,
-    hash: bcrypt.hashSync(req.body.password)
-  }).then((dbUser) => {
-    res.json(dbUser);
+  app.post("/register", (req, res) => {
+    db.User.create({
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      password: req.body.password,
+      hash: bcrypt.hashSync(req.body.password)
+    }).then((dbUser) => {
+      res.json(dbUser);
+    });
   });
-});
 
-// Authentication Home
-app.post("/home", signIn.signinAuthentication(db, bcrypt));
+  // Authentication Home
+  app.post("/home", signIn.signinAuthentication(db, bcrypt));
 
-app.post("/input:id", (req, res, db, bcrypt) => {
-  auth.requireAuth(db, bcrypt);
-});
-app.get("/home", (req, res) => {
-  
-});
-
-// Delete an example by id
-app.delete("/api/examples/:id", function(req, res) {
-  db.Example.destroy({ where: { id: req.params.id } }).then(function(
-    dbExample
-  ) {
-    res.json(dbExample);
+  app.post("/input:id", (req, res, db, bcrypt) => {
+    auth.requireAuth(db, bcrypt);
   });
-});
+  app.get("/home", (req, res) => {});
+
+  // Delete an example by id
+  app.delete("/api/examples/:id", function(req, res) {
+    db.Example.destroy({ where: { id: req.params.id } }).then(function(
+      dbExample
+    ) {
+      res.json(dbExample);
+    });
+  });
 
 };

@@ -20,7 +20,8 @@ const createSession = (db, user) => {
       email: email,
       id: id
     }
-  }).then(() => setToken(token, id))
+  })
+    .then(() => setToken(token, id))
     .then(() => {
       return { success: "true", userId: id, token, user };
     })
@@ -42,8 +43,8 @@ const handleSignin = (db, bcrypt, req, res) => {
       console.log("handleSignin rist then");
       const isValid = bcrypt.compareSync(password, data[0].hash);
       if (isValid) {
-        console.log("is this valid?")
-         return db.User.findAll({
+        console.log("is this valid?");
+        return db.User.findAll({
           where: {
             email: email
           }
@@ -59,10 +60,10 @@ const handleSignin = (db, bcrypt, req, res) => {
 
 const getAuthTokenId = (req, res) => {
   const { authorization } = req.headers;
-  console.log("getAuthTokenId started")
+  console.log("getAuthTokenId started");
   return redisClient.get(authorization, (err, reply) => {
     if (err || !reply) {
-      console.log("if statement of getAuthTokenId")
+      console.log("if statement of getAuthTokenId");
       return res.status(401).send("Unauthorized");
     }
     return res.json({ id: reply });
@@ -71,21 +72,21 @@ const getAuthTokenId = (req, res) => {
 
 var signinAuthentication = function signinAuthentication(db, bcrypt) {
   return function(req, res) {
-    console.log("starting signinAuth func")
+    console.log("starting signinAuth func");
     var authorization = req.headers.authorization;
     return authorization
       ? getAuthTokenId(req, res)
       : handleSignin(db, bcrypt, req, res)
         .then(function(data) {
-          console.log("first then of main func")
-              return data.id && data.email
-              ? createSession(db, data)
-              : Promise.reject(data)
-          })
+          console.log("first then of main func");
+          return data.id && data.email
+            ? createSession(db, data)
+            : Promise.reject(data);
+        })
         .then(function(session) {
-          console.log("session then")
+          console.log("session then");
           res.json(session);
-          })
+        })
         .catch(function(err) {
           console.log(err);
           res.status(400).json("Unable to start session");
