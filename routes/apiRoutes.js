@@ -1,5 +1,9 @@
 "use strict";
 
+const register = require("./register");
+const auth = require("./authorization");
+const signIn = require("./signIn");
+const bcrypt = require("bcrypt-nodejs");
 var yelp = require("yelp-fusion");
 var apiKey =
   process.env.YELP_API_KEY;
@@ -68,45 +72,45 @@ module.exports = function(app) {
     });
   });
 
-  app.delete("/api/examples/", function(req, res) {
-    db.Results.destroy({
-      where: {},
-      truncate: true
-    }).then(function() {
-      console.log("all rows deleted");
-    });
-  });
+  // app.delete("/api/examples/", function(req, res) {
+  //   db.Results.destroy({
+  //     where: {},
+  //     truncate: true
+  //   }).then(function() {
+  //     console.log("all rows deleted");
+  //   });
+  // });
 
   // Retreiving data hash Home
-  app.post("/home", (req, res) => {
-    db.Login.create({
-      email: req.body.email,
-      hash: req.body
-    })
-    .then((dbLogin) => {
-      res.json(dbLogin);
-    });
-  });
+ // Retrieving data from User Register
 
-  // Retrieving data from User Register
-  app.post("/register", (req, res) => {
-    db.User.create({
-      name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone,
-      password: req.body.password
-    }).then((dbUser) => {
-      res.json(dbUser);
-    });
+ app.post("/register", (req, res) => {
+  db.User.create({
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    password: req.body.password,
+    hash: bcrypt.hashSync(req.body.password)
+  }).then((dbUser) => {
+    res.json(dbUser);
   });
+});
 
+// Authentication Home
+app.post("/home", signIn.signinAuthentication(db, bcrypt));
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
-    });
-  });
+app.post("/input:id", (req, res, db, bcrypt) => {
+  auth.requireAuth(db, bcrypt);
+});
+app.get("/home", (req, res) => {});
+
+// Delete an example by id
+// app.delete("/api/examples/:id", function(req, res) {
+//   db.Example.destroy({ where: { id: req.params.id } }).then(function(
+//     dbExample
+//   ) {
+//     res.json(dbExample);
+//   });
+// });
+
 };

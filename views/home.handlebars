@@ -10,25 +10,35 @@
   </div>
 
 
-  <div class="container" id="firstPageBody">
-    <form>
+   <div class="container" id="firstPageBody">
+    <form id="signIn">
       <div>
         <h3 class="text-white">
           Sign in or sign up for a new account
         </h3>
         <a href="/register" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign Up</a>
       </div>
-      <div class="form-group">
-        <label for="formGroupExampleInput" class="text-white">Username</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Username">
+      <div class="col-md-4 mb-3 ml-1 mt-2">
+        <label for="validationServerUsername">Email</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend3">@</span>
+          </div>
+          <input type="text" class="form-control is-invalid" name="email" id="validationServerEmail" placeholder="john@doe.com"
+            aria-describedby="inputGroupPrepend3" required>
+          <div class="invalid-feedback">
+            Please enter your email address.
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label for="inputPassword5" class="text-white">Password</label>
-        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+        <input type="password" id="inputPassword5" class="form-control" name="password" aria-describedby="passwordHelpBlock">
         <small id="passwordHelpBlock" class="form-text text-muted text-white">
           Your password must be 8-20 characters long, contain letters, numbers, special characters and must not contain
           spaces or emoji.
         </small>
+        <button class="btn btn-primary ml-3 mb-2 mt-2" id="registerSubmitBtn" type="submit">Submit</button>
       </div>
     </form>
   </div>
@@ -69,3 +79,29 @@
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/js/index.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      function onSubmitSignIn() {
+        const signinForm = $("#signIn")
+        const email = signinForm.find("input[name=email]").val().trim()
+        const password = signinForm.find("input[name=password]").val().trim()
+        const user = {
+          email: email,
+          password: password
+        }
+        
+        $.post("/home", user)
+          .then(function (data) {
+            window.sessionStorage.setItem("token", data.token);
+            if (data.success === "true") {
+              location.replace("/input")
+            }
+          })
+      }
+      $("#signIn").on("submit", function (event) {
+        event.preventDefault()
+        onSubmitSignIn()
+      })
+    })
+  </script>

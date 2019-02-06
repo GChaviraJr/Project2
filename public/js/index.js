@@ -1,6 +1,5 @@
 // Get references to page elements
 var $userCityInput = $("#cityInput");
-var $exampleDescription = $("#example-description");
 var $submitBtn = $("#searchBtn");
 var $restaurantList = $("#example-list");
 
@@ -22,12 +21,12 @@ var API = {
       type: "GET"
     });
   },
-  deleteRestaurants: function() {
-    return $.ajax({
-      url: "api/examples/",
-      type: "DELETE"
-    });
-  },
+  // deleteRestaurants: function() {
+  //   return $.ajax({
+  //     url: "api/restaurants/",
+  //     type: "DELETE"
+  //   });
+  // },
   createSelectedLocation: function(locationInput) {
     return $.ajax({
       headers: {
@@ -46,11 +45,11 @@ var API = {
   }
 };
 
-var deleteRestaurantsInCurrentDatabase = function() {
-  API.deleteRestaurants().then(function() {
-    console.log("DELETE!");
-  });
-};
+// var deleteRestaurantsInCurrentDatabase = function() {
+//   API.deleteRestaurants().then(function() {
+//     console.log("DELETE!");
+//   });
+// };
 
 // var deleteSelectedLocations = function() {
 //   API.deleteSelectedLocations().then(function() {
@@ -96,7 +95,7 @@ var refreshRestaurants = function() {
 var handleUserInput = function(event) {
   event.preventDefault();
   // deleteSelectedLocations();
-  deleteRestaurantsInCurrentDatabase();
+  // deleteRestaurantsInCurrentDatabase();
   var cityInput = {
     text: $userCityInput.val().trim()
   };

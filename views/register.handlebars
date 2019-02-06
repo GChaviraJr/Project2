@@ -58,22 +58,44 @@
 
 
 <script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  $(document).ready(function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+    function onSubmitRegister() {
+      const registerForm = $("#firstPageBody")
+      const name = registerForm.find("input[name=name]").val().trim()
+      const email = registerForm.find("input[name=email]").val().trim()
+      const phone = registerForm.find("input[name=phone]").val().trim().replace(/[^0-9]/g, '');
+      const password = registerForm.find("input[name=password]").val().trim()
+      const user = {
+        email: email,
+        phone: phone,
+        password: password,
+        name: name
+      }
+      $.post("/register", user)
+        .then(function (data) {
+          console.log("User Data Loaded: " + data);
+          location.replace("/")
+        });
+    }
+    $("#firstPageBody").on("submit", function (event) {
+      event.preventDefault()
+      onSubmitRegister()
+    })
+  });
 </script>

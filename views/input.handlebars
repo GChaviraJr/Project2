@@ -1,31 +1,30 @@
-
-    <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-4" id="quote">"Wish you were beer.."</h1>
-        </div>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4" id="quote">"Wish you were beer.."</h1>
     </div>
+</div>
+<div class="card">
+    <h5 class="card-header">Establishment Selected</h5>
+    <div class="card-body">
+        <table class="table">
+            <tbody id="brewerySelected">
+
+                {{breweryName}}
+                {{breweryAddress}}
+
+                {{brewery}}
+
+            </tbody>
+        </table>
+        </br>
+        <a class="btn btn-secondary" href="index.html" role="button">Return to Search Results</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6 col-md-4">
         <div class="card">
-            <h5 class="card-header">Establishment Selected</h5>
+            <h5 class="card-header">Create New Contact</h5>
             <div class="card-body">
-                <table class="table">
-                    <tbody id="brewerySelected">
-
-                        {{breweryName}}
-                        {{breweryAddress}}
-                        
-                        {{brewery}}
-
-                    </tbody>
-                </table>
-            </br>
-            <a class="btn btn-secondary" href="index.html" role="button">Return to Search Results</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6 col-md-4">
-                <div class="card">
-                    <h5 class="card-header">Create New Contact</h5>
-                <div class="card-body">
                 <form>
                     <div class="form-group">
                         <label for="nameInput">Name</label>
@@ -41,14 +40,14 @@
                     </div>
                     <button type="submit" class="btn btn-secondary" id="submitPersonalInfo">Submit</button>
                 </form>
-                </div>
-                </div>
             </div>
-            <div class="col-12 col-md-8">
-                <div class="card">
-                    <h5 class="card-header">Contact List</h5>
-                <div class="card-body">
-                    <table class="table">
+        </div>
+    </div>
+    <div class="col-12 col-md-8">
+        <div class="card">
+            <h5 class="card-header">Contact List</h5>
+            <div class="card-body">
+                <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
@@ -57,10 +56,30 @@
                     </thead>
                     <tbody id="contactList">
                     </tbody>
-                    </table>
-                    <br/>
-                    <button type="button" class="btn btn-secondary" id="submitSendSMS">Send Invite</button>
-                </div>
-                </div>
+                </table>
+                <br />
+                <button type="button" class="btn btn-secondary" id="submitSendSMS">Send Invite</button>
             </div>
         </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.get("/home")
+            .then(function (data) {
+                console.log("what is data? ", data);
+                window.sessionStorage.getItem("token", data.token);
+                { { !--window.sessionStorage.setItem("token", data.token); --} }
+                if (window.sessionStorage.getItem("token", data.token)) {
+                    $(`<p>Welcome ${this.username}</p>`).appendTo("#userName");
+                }
+            })
+
+
+        $("#signOutBtn").on("click", function (event) {
+            sessionStorage.clear();
+            location.replace("/");
+        })
+    })
+</script>
