@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken");
-const env = process.env.NODE_ENV || "development";
-const redis = require("redis");
-const redisConfig = require(__dirname + '/../config/config.json')
+const Redis = require("ioredis");
+const redis = new Redis(process.env.REDIS_URL);
+// const redisConfig = require(__dirname + '/../config/config.json')
 // ['REDIS-' + env];
 
-const redisClient = redis.createClient(redisConfig);
+const redisClient = require("redis").createClient(process.env.REDIS_URL);
 
 const signToken = username => {
   const jwtPayload = { username };
