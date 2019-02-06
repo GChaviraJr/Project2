@@ -6,14 +6,6 @@
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "testdb",
-    "host": "localhost",
-    "dialect": "mysql",
-    "logging": false
-  },
   "production": {
     "username": "hao0448hphto8jc0",
     "password": "bjle8nvf2jpdbcs8",
