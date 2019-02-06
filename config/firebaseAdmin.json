@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "brewery-crawl-ccd46",
+    "private_key_id": "b2a5d7c2da0b2e1699801bc057bc7b8cb72f1e4b",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDHs8Vohm8psxp+\nLj9SL16Dznlwy+fDaGDG/V7ODbQUgczfODcHZlvlHHyJPmCEdPwPzosm7bURSsZY\nnMmdKDQwDO8EUho9LPrMINPLy+4EyutSj7zCANtheDHrj2Hg6NRyBWxdvdh66hw/\nni2BOKZ4/yzTaukALXwZIcNvyxW73AUc3A58g7gwhiEHuIrHUZ7c4yf1iuJKZ6U3\n+UP2L073CYCzl7iSFYhS6uOpOv9JjTLBeS+T5sxXZjdKnsq2/QY2nZ4rh2XO5Che\nFGIK1daw58U3PuKs/kynuchqg7UZbYO0cT8+bVMlQDZn2kBnQzfjzp58KUN0KtSn\n/TsMPN4dAgMBAAECggEAK4YzSq4uESUPa5vRwiw/ybNZBWvzdcPMf+Id5QPYkTWe\n/LGIUM0Ozzbvr4vQRl4mx50o99GMCppE83AsgtuN0EEpYMQyIs4oVQ/8iSjHlfTR\n5/sa1R+RsMMdAi2MVBP6pWUoMqAbS+K1SGpFmanKoole8C8XXCoNp36T1UwqTvho\nR/XqGBrVI9UAJUfqeCZzmZ6l2RXR6d6JKSyPms2iPz6UekIHylTDwzdDPTYH1bXm\nbnNf01OG2U4Lfze6Ew0ayTROiy8Tbq9kc0MmYOBFTOp0wUETiQTYT7XADR+04UQ1\nVsGkg7I8TMclZyolXgUQFhGlJ9EAd9YHjmiDVBjBIQKBgQD+azW0j5dTmyazuONe\nxkcQhmIDXIiuAnl4daqTmwp/0ZKYEAa+bIh7aPmaEnMvNZ2MmzYDLpxMiJZsndU9\ngMmizcALTTGtLPmTlOM+6Ah6evkwnUiPCVitlpHF7Cv0sOGU4OSbBKw3GzM/K80p\nwHvw5yALR16yV3nXgZpGSSdTUQKBgQDI8YFSY3vg1tMAnoHfDSrbeeyk9NnTAG/0\nALXkZ/16Cs61XWFtWQrJOEhUik915ST+XjiFuB1kuHkMi6BMDrRmPq6++gOyDyHF\nn2mCxXwM49vklkXs8KU2UPy2bCxldbD+zh5+Ahc162ULRESRX+5R9l50yHH8xKVQ\naUzMnzyzDQKBgQC+Dd6PpJh51zQBG8OWH+4kVQ7QzgY4XxbYuqWTIEWmmCq3N3mi\nNLd74T5cLx4mjRnFWIjvtZkCvyIHv5v1FskJukOU7bSHVkqWSam8a18yB70w6L20\nRFofSpRY0wU/BAdvzNRZTRNNEx+kOBdJ8kVj/3P7mPQPq7MUHvfdO3aKEQKBgQCJ\nAknn8BcN9cvG10y71hGLtjVJP/2pZdnvp/BdfR4ScX4BoVsFoLm++1Yt9mQ5gXTY\nz0uAuUmpXDKFAErasQgF0uV5J6UPakvfoFLjrF1puI88681fwbEUOOImS9l1kGqP\nQeD+j9RdmlO5++E4sg0f63j57ZXy/+2rxzBrMIPFnQKBgQC6pxJ+AvUtl9rtNftO\n3g9xHCIWMFzOSWFyTQKJh1C6j7oTCqFxA8OoL8ce7pVe35zTu4DaRFu2BcSA+kcf\n24gSux9lSAaDwPIGxnfsOgTog5CzI/Z1qSUpGNvajwdVUzWtgepz4RHh3Fw1owfA\ngkFOlhiv2CSzkPASdLpHABcSCA==\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-tka3y@brewery-crawl-ccd46.iam.gserviceaccount.com",
+    "client_id": "100959875074165372442",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-tka3y%40brewery-crawl-ccd46.iam.gserviceaccount.com"
+  }
+  
