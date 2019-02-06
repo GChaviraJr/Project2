@@ -11,6 +11,20 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/register", function(req, res) {
+    db.Results.findAll({}).then(function() {
+      res.render("../views/register.handlebars", {
+      });
+    });
+  });
+ 
+  app.get("/input", function(req, res) {
+    db.Results.findAll({}).then(function() {
+      res.render("../views/input.handlebars", {
+      });
+    });
+  });
+
   app.get("/restaurants", function(req, res) {
     res.render("index", {
       msg: "Welcome!",
@@ -27,6 +41,22 @@ module.exports = function(app) {
         example: dbExample
       });
     });
+  });
+
+  app.get("/input", function(req, res) {
+    setTimeout(function() {
+      db.Selected_Location.findAll({
+        limit: 1,
+        where: {},
+        order: [["createdAt", "DESC"]]
+      }).then(function(dbData) {
+        console.log(dbData[0].dataValues.name);
+        res.render("input", {
+          breweryName: dbData[0].dataValues.name,
+          breweryAddress: dbData[0].dataValues.address
+        });
+      });
+    }, 1000);
   });
 
   // Render 404 page for any unmatched routes

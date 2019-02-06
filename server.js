@@ -6,12 +6,8 @@ const db = require("./models");
 const app = express();
 const bcrypt = require("bcrypt-nodejs");
 const PORT = process.env.PORT || 3000;
-const morgan = require("morgan");
-
 const signIn = require("./routes/signIn");
 const register = require("./routes/register");
-const profile = require("./routes/profile");
-const auth = require("./routes/authorization");
 
 // Middleware
 app.use(morgan("combined"));
@@ -35,12 +31,6 @@ app.post("/home", signIn.signinAuthentication(db, bcrypt));
 app.post("/register", (req, res) => {
   register.handleRegister(req, res, db, bcrypt);
 });
-// app.get("/home/:id", auth.requireAuth, (req, res) => {
-//   profile.handleProfileGet(req, res, db);
-// });
-// app.post("/home/:id", auth.requireAuth, (req, res) => {
-//   profile.handleProfileUpdate(req, res, db);
-// });
 
 const syncOptions = { force: false };
 

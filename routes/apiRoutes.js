@@ -2,19 +2,17 @@
 
 var yelp = require("yelp-fusion");
 var apiKey =
-  "eGyFYoGa3oYrHwELLpuXsE9A1l9W6d6AoJszCKMPa3M9SNgR2kx1md-nelFS1jJdfOb1sCD3knBmuWA7kDTZSoZMehkn0-Avx1VDY6QMhAX45RpIuKyxSBZ53eTsW3Yx";
+  process.env.YELP_API_KEY;
 var client = yelp.client(apiKey);
 var db = require("../models");
 
 module.exports = function(app) {
   // GET route for getting all of the users
   app.get("/home", (req, res) => {
-
     db.User.findAll({}).then(dbusers => {
       res.json(dbusers);
     });
   });
-  
 
   app.get("/api/restaurants", function(req, res) {
     db.Results.findAll({}).then(function(dbRestaurants) {
@@ -50,6 +48,26 @@ module.exports = function(app) {
         // })
       });
   });
+
+  app.post("/api/selectedLocation", (req, res) => {
+    db.Selected_Location.create({
+      name: req.body.name,
+      address: req.body.address
+    }).then(() => {
+      console.log("added selected location");
+    });
+  });
+
+  app.delete("/api/selectedLocation", function(req, res) {
+    db.Selected_Location.destroy({
+      where: {},
+      truncate: true
+    }).then(function() {
+      res.render("input");;
+      console.log("all selected locations deleted");
+    });
+  });
+
   app.delete("/api/examples/", function(req, res) {
     db.Results.destroy({
       where: {},
@@ -58,17 +76,6 @@ module.exports = function(app) {
       console.log("all rows deleted");
     });
   });
-
-// Retreiving data hash Home
-// app.post("/home", (req, res) => {
-//   db.Login.create({
-//     email: req.body.email,
-//     hash: req.body
-//   });
-//   .then((dbLogin) => {
-//     res.json(dbLogin);
-//   });
-// });
 
   // Retreiving data hash Home
   app.post("/home", (req, res) => {
