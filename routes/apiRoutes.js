@@ -70,14 +70,14 @@ module.exports = function(app) {
     });
   });
 
-  // app.delete("/api/examples/", function(req, res) {
-  //   db.Results.destroy({
-  //     where: {},
-  //     truncate: true
-  //   }).then(function() {
-  //     console.log("all rows deleted");
-  //   });
-  // });
+  app.delete("/api/examples/", function(req, res) {
+    db.Results.destroy({
+      where: {},
+      truncate: true
+    }).then(function() {
+      console.log("all rows deleted");
+    });
+  });
 
   // Retreiving data hash Home
  // Retrieving data from User Register
@@ -100,15 +100,17 @@ app.post("/home", signIn.signinAuthentication(db, bcrypt));
 app.post("/input:id", (req, res, db, bcrypt) => {
   auth.requireAuth(db, bcrypt);
 });
-app.get("/home", (req, res) => {});
+app.get("/home", (req, res) => {
+  
+});
 
 // Delete an example by id
-// app.delete("/api/examples/:id", function(req, res) {
-//   db.Example.destroy({ where: { id: req.params.id } }).then(function(
-//     dbExample
-//   ) {
-//     res.json(dbExample);
-//   });
-// });
+app.delete("/api/examples/:id", function(req, res) {
+  db.Example.destroy({ where: { id: req.params.id } }).then(function(
+    dbExample
+  ) {
+    res.json(dbExample);
+  });
+});
 
 };

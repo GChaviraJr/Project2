@@ -4,7 +4,7 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     db.Results.findAll({}).then(function(dbRestaurants) {
-      res.render("home", {
+      res.render("../views/home.handlebars", {
         msg: "Welcome!",
         restaurants: dbRestaurants
       });
@@ -51,7 +51,7 @@ module.exports = function(app) {
         order: [["createdAt", "DESC"]]
       }).then(function(dbData) {
         console.log(dbData[0].dataValues.name);
-        res.render("input", {
+        res.render("../views/input.handlebars", {
           breweryName: dbData[0].dataValues.name,
           breweryAddress: dbData[0].dataValues.address
         });

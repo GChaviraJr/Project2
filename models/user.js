@@ -15,7 +15,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     phone: {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
+    },
+    password: {
+      type: DataTypes.STRING
+    },
+    hash: {
+      type: DataTypes.JSON,
+      allowNull: false
     }
   });
   return User;

@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken");
+const env = process.env.NODE_ENV || "development";
 const redis = require("redis");
+const redisConfig = require(__dirname + '/../config/config.json')['REDIS-' + env];
 
-const redisClient = redis.createClient(process.env.REDIS);
+const redisClient = redis.createClient(redisConfig);
 
 const signToken = username => {
   const jwtPayload = { username };
@@ -11,15 +13,22 @@ const signToken = username => {
 const setToken = (key, value) => Promise.resolve(redisClient.set(key, value));
 
 const createSession = (db, user) => {
+  console.log("start of createSession");
   const { email, id } = user;
+  console.log("after first const of createSession");
   const token = signToken(email);
-  return db.User.findAll({
-    where: {
-      email: email,
-      id: id
-    }
-  }).then(() => setToken(token, id))
+  console.log("right before first return of createSession");
+  // return db.User.findAll({
+  //   where: {
+  //     email: email,
+  //     id: id
+  //   }
+  // })
+    // .then(() => 
+   return setToken(token, id)
+    // )
     .then(() => {
+      console.log("second then of createSession")
       return { success: "true", userId: id, token, user };
     })
     .catch(console.log);
@@ -37,17 +46,17 @@ const handleSignin = (db, bcrypt, req, res) => {
     }
   })
     .then(data => {
- 
+      console.log("handleSignin rist then");
       const isValid = bcrypt.compareSync(password, data[0].hash);
       if (isValid) {
-   
-        return db.User.findAll({
+        console.log("is this valid?")
+         return db.User.findAll({
           where: {
             email: email
           }
         })
           .then(user => user[0])
-          .catch(err => res.status(400).json("unable to get user"))
+          .catch(err => res.status(400).json("unable to get user"));
       } else {
         return Promise.reject("wrong credentials");
       }
@@ -57,8 +66,10 @@ const handleSignin = (db, bcrypt, req, res) => {
 
 const getAuthTokenId = (req, res) => {
   const { authorization } = req.headers;
+  console.log("getAuthTokenId started")
   return redisClient.get(authorization, (err, reply) => {
     if (err || !reply) {
+      console.log("if statement of getAuthTokenId")
       return res.status(401).send("Unauthorized");
     }
     return res.json({ id: reply });
@@ -67,20 +78,23 @@ const getAuthTokenId = (req, res) => {
 
 var signinAuthentication = function signinAuthentication(db, bcrypt) {
   return function(req, res) {
-    
+    console.log("starting signinAuth func")
     var authorization = req.headers.authorization;
     return authorization
       ? getAuthTokenId(req, res)
       : handleSignin(db, bcrypt, req, res)
-        .then(function(user) {
-            return user.id && user.email
-              ? createSession(db, user)
-              : Promise.reject(user);
+        .then(function(data) {
+          console.log("first then of main func")
+              return data.id && data.email
+              ? createSession(db, data)
+              : Promise.reject(data)
           })
         .then(function(session) {
+          console.log("session then")
           res.json(session);
           })
         .catch(function(err) {
+          console.log(err);
           res.status(400).json("Unable to start session");
         });
   };
