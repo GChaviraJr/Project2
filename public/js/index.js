@@ -75,7 +75,7 @@ module.exports = function(app) {
           .append($a);
 
         var $button = $(
-          '<a href="/input" class="btn btn-danger float-right delete" role="button">Select</a>'
+          "<a href=\"/input\" class=\"btn btn-danger float-right delete\" role=\"button\">Select</a>"
         );
 
         $li.append($button);
