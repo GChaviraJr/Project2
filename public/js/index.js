@@ -1,6 +1,4 @@
 // Get references to page elements
-var $userCityInput = $("#cityInput");
-var $submitBtn = $("#searchBtn");
 var $restaurantList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
@@ -93,9 +91,11 @@ var refreshRestaurants = function() {
 //  is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleUserInput = function(event) {
+  console.log("Here I am")
   event.preventDefault();
   // deleteSelectedLocations();
   // deleteRestaurantsInCurrentDatabase();
+  var $userCityInput = $("#cityInput");
   var cityInput = {
     text: $userCityInput.val().trim()
   };
@@ -139,5 +139,5 @@ var handleSelectButtonClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleUserInput);
+$(document).on("click", "#searchBtn", handleUserInput);
 $restaurantList.on("click", ".delete", handleSelectButtonClick);

@@ -6,7 +6,7 @@ const signIn = require("./signIn");
 const bcrypt = require("bcrypt-nodejs");
 var yelp = require("yelp-fusion");
 var apiKey =
-  process.env.YELP_API_KEY;
+"eGyFYoGa3oYrHwELLpuXsE9A1l9W6d6AoJszCKMPa3M9SNgR2kx1md-nelFS1jJdfOb1sCD3knBmuWA7kDTZSoZMehkn0-Avx1VDY6QMhAX45RpIuKyxSBZ53eTsW3Yx";
 var client = yelp.client(apiKey);
 var db = require("../models");
 
@@ -43,14 +43,12 @@ module.exports = function(app) {
             URL: response.jsonBody.businesses[i].url
           };
           // console.log(JSON.stringify(response, null, 2));
-          db.Results.create(tableData).then(function() {
-            res.end();
-          });
+          db.Results.create(tableData);
         }
-        // }).catch(e => {
-        //   console.log(e);
-        // })
-      });
+        res.status(200).send(response);
+      }).catch(e => {
+        console.log(e);
+      })
   });
 
   app.post("/api/selectedLocation", (req, res) => {

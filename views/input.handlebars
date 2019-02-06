@@ -61,31 +61,8 @@
                 <button type="button" class="btn btn-secondary" id="submitSendSMS">Send Invite</button>
             </div>
         </div>
-<<<<<<< HEAD
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $.get("/home")
-            .then(function (data) {
-                console.log("what is data? ", data);
-                window.sessionStorage.getItem("token", data.token);
-                { { !--window.sessionStorage.setItem("token", data.token); --} }
-                if (window.sessionStorage.getItem("token", data.token)) {
-                    $(`<p>Welcome ${this.username}</p>`).appendTo("#userName");
-                }
-            })
-
-
-        $("#signOutBtn").on("click", function (event) {
-            sessionStorage.clear();
-            location.replace("/");
-        })
-    })
-</script>
-=======
-
 
   <div class="container" id="firstPageBody">
     <div class="card">
@@ -112,4 +89,22 @@
 
     </div>
   </div>
->>>>>>> 467d744fbd694e90f389c1e17079732e04ae45ca
+
+  <script>
+    $(document).ready(function () {
+        $.get("/home")
+            .then(function (data) {
+                console.log("what is data? ", data);
+                window.sessionStorage.getItem("token", data.token);
+                if (window.sessionStorage.getItem("token", data.token)) {
+                    $(`<p>Welcome ${this.username}</p>`).appendTo("#userName");
+                }
+            })
+
+
+        $("#signOutBtn").on("click", function (event) {
+            sessionStorage.clear();
+            location.replace("/");
+        })
+    })
+</script>
