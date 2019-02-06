@@ -8,7 +8,7 @@ module.exports = function(app) {
         msg: "Welcome!",
         restaurants: dbRestaurants
       });
-    });
+    }).catch(console.error);
   });
 
   app.get("/register", function(req, res) {
