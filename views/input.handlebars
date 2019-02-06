@@ -4,8 +4,8 @@
     </div>
 </div>
 
-<h2><span class="badge badge-secondary" id="userName"></span></h2> <button type="button" class="btn btn-secondary"
-    id="signOutBtn">Sign Out</button>
+<h2><span class="badge badge-secondary" id="userName"></span></h2> <button type="button" class="btn btn-secondary" id="signOutBtn">Sign
+    Out</button>
 
 <div class="card">
     <h5 class="card-header">Establishment Selected</h5>
@@ -15,7 +15,6 @@
 
                 {{breweryName}}
                 {{breweryAddress}}
-
                 {{brewery}}
 
             </tbody>
@@ -68,23 +67,23 @@
     </div>
 </div>
 
-  <div class="container" id="firstPageBody">
+<div class="container" id="firstPageBody">
     <div class="card">
-      <h5 class="card-header">Find an Establishment!</h5>
-      <div class="card-body">
-        <form id="theForm">
-          <input type="text" id="cityInput" placeholder="Search by City">
-          </br>
-          </br>
-          <button type="button" class="btn btn-secondary" id="searchBtn">
-            <i class="fa fa-beer" aria-hidden="true"></i>
-            Search
-          </button>
-        </form>
-      </div>
+        <h5 class="card-header">Find an Establishment!</h5>
+        <div class="card-body">
+            <form id="theForm">
+                <input type="text" id="cityInput" placeholder="Search by City">
+                </br>
+                </br>
+                <button type="button" class="btn btn-secondary" id="searchBtn">
+                    <i class="fa fa-beer" aria-hidden="true"></i>
+                    Search
+                </button>
+            </form>
+        </div>
     </div>
-  </div>
-  <div class="container" id="firstPageBody">
+</div>
+<div class="container" id="firstPageBody">
     <h3>Restaurants:</h3>
     <ul id="example-list" class="list-group">
 
@@ -92,9 +91,11 @@
     <div class="row">
 
     </div>
-  </div>
+</div>
 
-  <script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+
+<script>
     $(document).ready(function () {
         $.get("/home")
             .then(function (data) {
