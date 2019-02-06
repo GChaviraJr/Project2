@@ -5,7 +5,7 @@ const auth = require("./authorization");
 const signIn = require("./signIn");
 const bcrypt = require("bcrypt-nodejs");
 var yelp = require("yelp-fusion");
-yelpKey = process.env.YELP_API_KEY;
+var apiKey = process.env.YELP_API_KEY;
 var client = yelp.client(apiKey);
 var db = require("../models");
 
@@ -100,7 +100,7 @@ app.post("/input:id", (req, res, db, bcrypt) => {
   auth.requireAuth(db, bcrypt);
 });
 app.get("/home", (req, res) => {
-
+  
 });
 
 // Delete an example by id
