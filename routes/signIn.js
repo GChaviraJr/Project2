@@ -19,17 +19,13 @@ const createSession = (db, user) => {
   console.log("after first const of createSession");
   const token = signToken(email);
   console.log("right before first return of createSession");
-  // return db.User.findAll({
-  //   where: {
-  //     email: email,
-  //     id: id
-  //   }
-  // })
-    // .then(() => 
-   return setToken(token, id)
-    // )
+  return db.User.findAll({
+    where: {
+      email: email,
+      id: id
+    }
+  }).then(() => setToken(token, id))
     .then(() => {
-      console.log("second then of createSession")
       return { success: "true", userId: id, token, user };
     })
     .catch(console.log);
