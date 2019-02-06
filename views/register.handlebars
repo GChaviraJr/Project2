@@ -59,7 +59,6 @@
         Agree to terms and conditions
       </label>
       <div class="invalid-feedback">
-        You must agree before submitting.
       </div>
     </div>
   </div>
@@ -89,7 +88,7 @@
       const registerForm = $("#firstPageBody")
       const name = registerForm.find("input[name=name]").val().trim()
       const email = registerForm.find("input[name=email]").val().trim()
-      const phone = registerForm.find("input[name=phone]").val().trim()
+      const phone = registerForm.find("input[name=phone]").val().trim().replace(/[^0-9]/g, '');
       const password = registerForm.find("input[name=password]").val().trim()
       const user = {
         email: email,
@@ -99,10 +98,12 @@
       }
 
       $.post("/register", user)
-        .done(function (data) {
+        .then(function (data) {
           console.log("User Data Loaded: " + data);
+          location.replace("/")
         });
     }
+
     $("#firstPageBody").on("submit", function (event) {
       event.preventDefault()
       onSubmitRegister()

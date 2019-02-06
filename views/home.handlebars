@@ -101,6 +101,8 @@
 
 <script>
   $(document).ready(function () {
+
+
     function onSubmitSignIn() {
       const signinForm = $("#signIn")
       const email = signinForm.find("input[name=email]").val().trim()
@@ -111,15 +113,19 @@
       }
 
       $.post("/home", user)
-        .done(function (data) {
-          console.log("Post completed: " + data);
+        .then(function (data) {
+          window.sessionStorage.setItem("token", data.token);
+          if (data.success === "true") {
+            location.replace("/input")
+          }
         })
     }
+
 
     $("#signIn").on("submit", function (event) {
       event.preventDefault()
       onSubmitSignIn()
     })
-
   })
+
 </script>

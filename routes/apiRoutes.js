@@ -1,8 +1,8 @@
 "use strict";
 
-const signIn = require("./signIn");
 const register = require("./register");
 const auth = require("./authorization");
+const signIn = require("./signIn");
 const bcrypt = require("bcrypt-nodejs");
 var yelp = require("yelp-fusion");
 var apiKey =
@@ -76,11 +76,19 @@ module.exports = function(app) {
   });
 
   // Authentication Home
-app.post("/home", signIn.signinAuthentication(db, bcrypt))
+  app.post("/home", signIn.signinAuthentication(db, bcrypt));
 
-  // app.post("/home", (req, res) => {
-  //   signIn.redisClient;
-  //   signIn.signinAuthentication(db, bcrypt);
+  app.post("/input:id", (req, res, db, bcrypt) => {
+    auth.requireAuth(db, bcrypt);
+  });
+  app.get("/home", (req, res) => {
+    
+  });
+  // app.get("/input/:id", (req, res) => {
+  //   profile.handleProfileGet(req, res, db);
+  // });
+  // app.post("/input/:id", (req, res) => {
+  //   profile.handleProfileUpdate(req, res, db);
   // });
 
   // Delete an example by id

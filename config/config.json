@@ -4,7 +4,8 @@
     "password": "Sb1598951",
     "database": "brewery_db",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": false
   },
   "REDIS": {
     "Host": "ec2-3-82-181-170.compute-1.amazonaws.com",
