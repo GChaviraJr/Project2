@@ -1,8 +1,6 @@
 const jwt = require("jsonwebtoken");
-const Redis = require("ioredis");
-const redis = new Redis(process.env.REDIS_URL);
-// const redisConfig = require(__dirname + '/../config/config.json')
-// ['REDIS-' + env];
+// const Redis = require("ioredis");
+// const redis = new Redis(process.env.REDIS_URL);
 
 const redisClient = require("redis").createClient(process.env.REDIS_URL);
 
