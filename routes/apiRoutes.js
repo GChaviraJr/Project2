@@ -5,7 +5,7 @@ const auth = require("./authorization");
 const signIn = require("./signIn");
 const bcrypt = require("bcrypt-nodejs");
 var yelp = require("yelp-fusion");
-YELP_API_KEY = process.env.YELP_API_KEY;
+yelpKey = process.env.YELP_API_KEY;
 var client = yelp.client(apiKey);
 var db = require("../models");
 
