@@ -1,7 +1,9 @@
 $.ajax({
   method: "POST",
   url: "/input",
-  success: success,
+  success: function(data) {
+    console.log("successful!");
+  },
   dataType: "json"
 }).then(function(responseJSON) {
   const config = responseJSON
