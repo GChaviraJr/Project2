@@ -122,6 +122,6 @@ module.exports = function(app) {
     messagingSenderId: process.env.FIREBASE_SENDER_ID
   };
   app.post("/input", function(req, res) {
-    res.send(config);
+    res.json(config);
   });
 };

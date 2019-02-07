@@ -1,9 +1,13 @@
-$.post("/input").then(function() {
-  config = JSON.parse(data.config);
-  console.log("twilio try succeeded");
+$.ajax({
+  method: "POST",
+  url: "/input",
+  success: success,
+  dataType: "json"
+}).then(function(responseJSON) {
+  const config = responseJSON
 });
 
-firebase.initializeApp(data.config);
+firebase.initializeApp(responseJSON);
 
 const database = firebase.database();
 const ref = database.ref("contacts");
