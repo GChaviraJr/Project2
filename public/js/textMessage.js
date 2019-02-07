@@ -1,3 +1,7 @@
+$.ajax("/backend/route").then(data => data.json()).then(json => {
+  config = JSON.parse(json);
+}) 
+
 const config = {
   apiKey: "AIzaSyAtoXNi11pzQhYSe5zMOQvM5BfPb0xRfYs",
   authDomain: "http://brewery-crawl-ccd46.firebaseapp.com/",
