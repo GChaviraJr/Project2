@@ -111,25 +111,5 @@ module.exports = function(app) {
   });
   app.get("/home", (req, res) => {});
 
-  // config var
-
-  // const firebaseAPIKey = process.env.FIREBASE_API_KEY;
-  // const firebaseDBURL = process.env.FIREBASE_DB_URL;
-  // const firebaseDomain = process.env.FIREBASE_DOMAIN;
-  // const firebaseProject = process.env.FIREBASE_PROJECT_ID;
-  // const firebaseSender = process.env.FIREBASE_SENDER_ID;
-  // const firebaseStgBucket = process.env.FIREBASE_STG_BUCKET;
-
-  // const config = {
-  //   apiKey: firebaseAPIKey,
-  //   authDomain: firebaseDomain,
-  //   databaseURL: firebaseDBURL,
-  //   projectId: firebaseProject,
-  //   storageBucket: firebaseStgBucket,
-  //   messagingSenderId: firebaseSender
-  // };
-
-  // app.post("/input", (req, res) => {
-  //   res.json(config);
-  // });
+  
 };
