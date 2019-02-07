@@ -57,25 +57,24 @@ var deleteRestaurantsInCurrentDatabase = function () {
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshRestaurants = function () {
-  API.getRestaurants().then(function (data) {
-    console.log("here is data", data);
+  API.getRestaurants().then(function (data) {    
     var $restaurants = data.map(function (restaurant) {
       var $a = $("<a>")
         .text(restaurant.name)
-        .append(" " + restaurant.address)
-        .attr("href", "/input");
+        .append(" " + restaurant.address);
+        // .attr("href", "/input");
 
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": restaurant.id,
-          "data-name": restaurant.name,
-          "data-address": restaurant.address
+          "id": restaurant.id,
+          "name": restaurant.name,
+          "address": restaurant.address
         })
         .append($a);
 
       var $button = $(
-        "<a href=\"/input\" class=\"btn btn-danger float-right delete\" role=\"button\">Select</a>"
+        "<a href=\"#\" class=\"btn btn-danger float-right delete\" role=\"button\">Select</a>"
       );
 
       $li.append($button);

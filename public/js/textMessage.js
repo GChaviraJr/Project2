@@ -23,7 +23,6 @@ const config = {
 };
 firebase.initializeApp(config);
 
-var $restaurantList = $("#restaurant-list");
 const database = firebase.database();
 const ref = database.ref("contacts");
 const timeRef = database.ref("time");
@@ -50,39 +49,37 @@ $(document).ready(function () {
       .val()
       .trim()
       .replace(/[^0-9 am pm]/g, "");
-    let correctedNumber = number.replace(/[^0-9]/g, "");
-
-    var userInfo = {
-      name: name,
-      correctedNumber: correctedNumber
-    };
-    timeRef.set({
+      let correctedNumber = number.replace(/[^0-9]/g, "");
+      
+      var userInfo = {
+        name: name,
+        correctedNumber: correctedNumber
+      };
+      timeRef.set({
       showTime: confirmedTime
     });
-
+    
     ref.push(userInfo);
     clearPersonalInput();
     reload();
   });
+  
+  var $restaurantList = $("#restaurant-list");
 
   var handleSelectButtonClick = function () {
-    var chosenName = $(this).data - name.val().trim();
-    var chosenAddress = $(this).data - address.val().trim();
+    console.log("Select click is being registered");
+    var chosenName = $(this).name;
+    var chosenAddress = $(this).address;
     console.log(chosenName, chosenAddress);
-    function breweryChoice(chosenName, chosenAddress) {
-      database.ref().child("brewery/name").set(chosenName);
-      database.ref().child("brewery/location").set(chosenAddress);
-      $("body").addClass("animated slideOutLeft")
-      setTimeout(function () {
-        window.location.replace("contact.html")
-      }, 500);
-    }
+    database.ref().child("brewery/name").set(chosenName);
+    database.ref().child("brewery/location").set(chosenAddress);
   };
 
   $restaurantList.on("click", ".delete", handleSelectButtonClick);
+  
   // Remove button
   // Appending info from Firebase to the table
-
+  
   database.ref("contacts").on("child_added", function (childSnapshot) {
     let name = childSnapshot.val().name;
     let dataKey = childSnapshot.key;
