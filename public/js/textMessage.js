@@ -13,6 +13,8 @@
 //     config = JSON.parse(json)
 //   }
 
+GET /apps/{app_id_or_name}/config-vars
+
 const config = {
   apiKey: "AIzaSyAtoXNi11pzQhYSe5zMOQvM5BfPb0xRfYs",
   authDomain: "http://brewery-crawl-ccd46.firebaseapp.com/",
@@ -68,8 +70,8 @@ $(document).ready(function () {
 
   var handleSelectButtonClick = function () {
     console.log("Select click is being registered");
-    var chosenName = $(this).name;
-    var chosenAddress = $(this).address;
+    var chosenName = $(this).parent().name;
+    var chosenAddress = $(this).parent().address;
     console.log(chosenName, chosenAddress);
     database.ref().child("brewery/name").set(chosenName);
     database.ref().child("brewery/location").set(chosenAddress);
