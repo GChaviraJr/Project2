@@ -121,6 +121,7 @@ module.exports = function(app) {
     storageBucket: process.env.FIREBASE_STG_BUCKET,
     messagingSenderId: process.env.FIREBASE_SENDER_ID
   };
+  const firebase = "https://www.gstatic.com/firebasejs/5.5.8/firebase.js";
   firebase.initializeApp(config);
   
   const database = firebase.database();
