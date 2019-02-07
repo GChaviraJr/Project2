@@ -1,5 +1,5 @@
 // Get references to page elements
-var $restaurantList = document.querySelector("#restaurant-list");
+var $restaurantList = $("#restaurant-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
