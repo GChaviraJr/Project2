@@ -128,6 +128,7 @@ module.exports = function(app) {
   };
 
   app.post("/input", function(req, res) {
-    res.json(config, twilioData);
+    res.json(config);
+    res.json(twilioData);
   });
 };
