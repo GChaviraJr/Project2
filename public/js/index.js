@@ -3,7 +3,7 @@ var $restaurantList = $("#restaurant-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  searchRestaurants: function(cityInput) {
+  searchRestaurants: function (cityInput) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -13,19 +13,19 @@ var API = {
       data: JSON.stringify(cityInput)
     });
   },
-  getRestaurants: function() {
+  getRestaurants: function () {
     return $.ajax({
       url: "api/restaurants",
       type: "GET"
     });
   },
-  deleteRestaurants: function() {
+  deleteRestaurants: function () {
     return $.ajax({
       url: "api/restaurants/",
       type: "DELETE"
     });
   },
-  createSelectedLocation: function(locationInput) {
+  createSelectedLocation: function (locationInput) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -35,7 +35,7 @@ var API = {
       data: JSON.stringify(locationInput)
     });
   },
-  deleteSelectedLocations: function() {
+  deleteSelectedLocations: function () {
     return $.ajax({
       url: "api/selectedLocation/",
       type: "DELETE"
@@ -43,23 +43,23 @@ var API = {
   }
 };
 
-  var deleteRestaurantsInCurrentDatabase = function() {
-    API.deleteRestaurants().then(function() {
-      console.log("DELETE!");
-    });
-  };
+var deleteRestaurantsInCurrentDatabase = function () {
+  API.deleteRestaurants().then(function () {
+    console.log("DELETE!");
+  });
+};
 
-  // var deleteSelectedLocations = function() {
-  //   API.deleteSelectedLocations().then(function() {
-  //     console.log("Delected Selected Location Table");
-  //   });
-  // };
+// var deleteSelectedLocations = function() {
+//   API.deleteSelectedLocations().then(function() {
+//     console.log("Delected Selected Location Table");
+//   });
+// };
 
-  // refreshExamples gets new examples from the db and repopulates the list
-var refreshRestaurants = function() {
-  API.getRestaurants().then(function(data) {
+// refreshExamples gets new examples from the db and repopulates the list
+var refreshRestaurants = function () {
+  API.getRestaurants().then(function (data) {
     console.log("here is data", data);
-    var $restaurants = data.map(function(restaurant) {
+    var $restaurants = data.map(function (restaurant) {
       var $a = $("<a>")
         .text(restaurant.name)
         .append(" " + restaurant.address)
@@ -88,10 +88,10 @@ var refreshRestaurants = function() {
   });
 };
 
-  // handleUserInput
-  //  is called whenever we submit a new example
-  // Save the new example to the db and refresh the list
-var handleUserInput = function(event) {
+// handleUserInput
+//  is called whenever we submit a new example
+// Save the new example to the db and refresh the list
+var handleUserInput = function (event) {
   console.log("Here I am");
   event.preventDefault();
   // deleteSelectedLocations();
@@ -106,40 +106,51 @@ var handleUserInput = function(event) {
     return;
   }
 
-  API.searchRestaurants(cityInput).then(function() {
+  API.searchRestaurants(cityInput).then(function () {
     refreshRestaurants();
   });
 
   $userCityInput.val("");
 };
 
-  // handleDeleteBtnClick is called when an example's delete button is clicked
-  // Remove the example from the db and refresh the list
-var handleSelectButtonClick = function() {
-  var idToSelect = $(this)
-    .parent()
-    .attr("data-id");
+// handleDeleteBtnClick is called when an example's delete button is clicked
+// Remove the example from the db and refresh the list
+// var handleSelectButtonClick = function () {
+//   var chosenName = $(this).data - name.val().trim()
+//   var chosenAddress = $(this).data - address.val().trim()
 
-  var chosenName = $(this)
-    .parent()
-    .attr("data-name");
+//   function breweryChoice(chosenName, chosenAddress) {
+//     database.ref().child("brewery/name").set(chosenName)
+//     database.ref().child("brewery/location").set(chosenAddress)
+//     $("body").addClass("animated slideOutLeft")
+//     setTimeout(function () {
+//       window.location.replace("contact.html")
+//     }, 500)
+//   }
 
-  var chosenAddress = $(this)
-    .parent()
-    .attr("data-address");
+//   // var idToSelect = $(this)
+//   //   .parent()
+//   //   .attr("data-id");
 
-  var locationInput = {
-    name: chosenName,
-    address: chosenAddress
-  };
-  console.log(idToSelect, chosenName, chosenAddress);
+//   // var chosenName = $(this)
+//   //   .parent()
+//   //   .attr("data-name");
 
-  API.createSelectedLocation(locationInput).then(function() {
-    refreshRestaurants();
-  });
-};
+//   // var chosenAddress = $(this)
+//   //   .parent()
+//   //   .attr("data-address");
 
-  // Add event listeners to the submit and delete buttons
+//   // var locationInput = {
+//   //   name: chosenName,
+//   //   address: chosenAddress
+//   // };
+//   // console.log(idToSelect, chosenName, chosenAddress);
+
+//   API.createSelectedLocation(locationInput).then(function () {
+//     refreshRestaurants();
+//   });
+// };
+
+// Add event listeners to the submit and delete buttons
 $(document).on("click", "#searchBtn", handleUserInput);
 $restaurantList.on("click", ".delete", handleSelectButtonClick);
-
