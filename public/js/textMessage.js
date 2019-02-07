@@ -5,22 +5,22 @@
 //   console.log(config);
 // });
 
-$.ajax({
-  type: "POST",
-  url:
-    "/routes/apiRoutes.js",
-  data: {
-    config = JSON.parse(json)
-  }
+// $.ajax({
+//   type: "POST",
+//   url:
+//     "/routes/apiRoutes.js",
+//   data: {
+//     config = JSON.parse(json)
+//   }
 
-// const config = {
-//   apiKey: "AIzaSyAtoXNi11pzQhYSe5zMOQvM5BfPb0xRfYs",
-//   authDomain: "http://brewery-crawl-ccd46.firebaseapp.com/",
-//   databaseURL: "https://brewery-crawl-ccd46.firebaseio.com/",
-//   projectId: "brewery-crawl-ccd46",
-//   storageBucket: "http://brewery-crawl-ccd46.appspot.com/",
-//   messagingSenderId: "322173165333"
-// };
+const config = {
+  apiKey: "AIzaSyAtoXNi11pzQhYSe5zMOQvM5BfPb0xRfYs",
+  authDomain: "http://brewery-crawl-ccd46.firebaseapp.com/",
+  databaseURL: "https://brewery-crawl-ccd46.firebaseio.com/",
+  projectId: "brewery-crawl-ccd46",
+  storageBucket: "http://brewery-crawl-ccd46.appspot.com/",
+  messagingSenderId: "322173165333"
+};
 firebase.initializeApp(config);
 
 const database = firebase.database();
