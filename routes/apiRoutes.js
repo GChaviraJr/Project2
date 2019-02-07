@@ -1,11 +1,18 @@
 "use strict";
 
+// twilio api
+const SID = process.env.TWILIO_SID;
+const Key = process.env.TWILIO_KEY;
+
+// normal calls and variables
+
 const register = require("./register");
 const auth = require("./authorization");
 const signIn = require("./signIn");
 const bcrypt = require("bcrypt-nodejs");
 var yelp = require("yelp-fusion");
 var apiKey = process.env.YELP_API_KEY;
+
 var client = yelp.client(apiKey);
 var db = require("../models");
 
@@ -20,6 +27,7 @@ module.exports = function(app) {
   app.get("/api/restaurants", function(req, res) {
     db.Results.findAll({}).then(function(dbRestaurants) {
       res.json(dbRestaurants);
+      console.log(dbRestaurants);
     });
   });
 
@@ -49,7 +57,7 @@ module.exports = function(app) {
       })
       .catch(e => {
         console.log(e);
-      });;
+      });
   });
 
   app.post("/api/selectedLocation", (req, res) => {
@@ -102,6 +110,29 @@ module.exports = function(app) {
     auth.requireAuth(db, bcrypt);
   });
   app.get("/home", (req, res) => {});
+
+  // config var
+
+const firebaseAPIKey = process.env.FIREBASE_API_KEY;
+const firebaseDBURL = process.env.FIREBASE_DB_URL;
+const firebaseDomain = process.env.FIREBASE_DOMAIN;
+const firebaseProject = process.env.FIREBASE_PROJECT_ID;
+const firebaseSender = process.env.FIREBASE_SENDER_ID;
+const firebaseStgBucket = process.env.FIREBASE_STG_BUCKET;
+
+  const config = {
+    apiKey: firebaseAPIKey,
+    authDomain: firebaseDomain,
+    databaseURL: firebaseDBURL,
+    projectId: firebaseProject,
+    storageBucket: firebaseStgBucket,
+    messagingSenderId: firebaseSender
+  };
+
+  app.post("/input:id", (req, res, db, bcrypt) => {
+    auth.requireAuth(db, bcrypt);
+    config;
+  });
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {

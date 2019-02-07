@@ -1,5 +1,5 @@
 // Get references to page elements
-var $restaurantList = $("#example-list");
+var $restaurantList = $("#restaurant-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -58,6 +58,7 @@ var API = {
   // refreshExamples gets new examples from the db and repopulates the list
 var refreshRestaurants = function() {
   API.getRestaurants().then(function(data) {
+    console.log(data);
     var $restaurants = data.map(function(restaurant) {
       var $a = $("<a>")
         .text(restaurant.name)
