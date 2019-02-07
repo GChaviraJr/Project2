@@ -131,10 +131,5 @@ module.exports = function(app) {
 
   app.post("/input", (req, res) => {
     res.json(config);
-  })
-
-  // app.post("/input", (req, res) => {
-  //   res.json(config);
-  // });
-
-
+  });
+};
