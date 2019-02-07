@@ -121,7 +121,13 @@ module.exports = function(app) {
     storageBucket: process.env.FIREBASE_STG_BUCKET,
     messagingSenderId: process.env.FIREBASE_SENDER_ID
   };
+
+  const twilioData = {
+    SID: process.env.TWILIO_SID,
+    Key: process.env.TWILIO_KEY
+  };
+
   app.post("/input", function(req, res) {
-    res.json(config);
+    res.json(config, twilioData);
   });
 };

@@ -5,8 +5,9 @@ $.ajax({
   success: function(data) {
     console.log("successful! ", data);
   }
+}).then(() => {
+  console.log("Here it is ", data);
 });
-config = data;
 
 firebase.initializeApp(config);
 
