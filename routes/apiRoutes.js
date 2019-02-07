@@ -181,6 +181,5 @@ module.exports = function(app) {
     });
   };
 
-
-
+  app.post("/input", sendMessage());
 };
