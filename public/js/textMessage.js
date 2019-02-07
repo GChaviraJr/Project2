@@ -70,7 +70,7 @@ $(document).ready(function () {
   var handleSelectButtonClick = function () {
     console.log("Select click is being registered");
     var chosenName = $(this).parent().name;
-    var chosenAddress = $(this).parent(address;
+    var chosenAddress = $(this).parent().address;
     console.log(chosenName, chosenAddress);
     database.ref().child("brewery/name").set(chosenName);
     database.ref().child("brewery/location").set(chosenAddress);
