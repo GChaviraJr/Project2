@@ -11,9 +11,7 @@ $.post("/input").then(function(data) {
     const SID = data.SID;
     const Key = data.Key;
 
-});
-
-firebase.initializeApp(config);
+    firebase.initializeApp(config);
 
 const database = firebase.database();
 const ref = database.ref("contacts");
@@ -138,20 +136,6 @@ $(document).ready(function() {
     });
   });
 
-  $.post("/input").then(function(data) {
-    console.log(data);
-    const config = {
-      apiKey: data.apikey,
-      authDomain: data.authDomain,
-      databaseURL: data.databaseURL,
-      projectId: data.projectId,
-      storageBucket: data.storageBucket,
-      messagingSenderId: data.messagingSenderId
-    };
-      const SID = data.SID;
-      const Key = data.Key;
-  
-  });
   // Send a SMS when button is clicked!
   $("#submitSendSMS").click(function() {
     timeRef.on("value", function(snapshot) {
@@ -169,8 +153,7 @@ $(document).ready(function() {
           timeChosen;
         console.log(message);
 
-        const SID = "ACde7d929d4b9b0f7e32b6f0f553fe9667";
-        const Key = "41cdc646ad2521c5e86216b3b17dca1b";
+        
         database.ref("contacts").once("value", function(snapshot) {
           snapshot.forEach(function(childSnapshot) {
             var childKey = childSnapshot.key;
@@ -209,3 +192,7 @@ $(document).ready(function() {
     });
   });
 });
+
+
+});
+
