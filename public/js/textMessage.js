@@ -1,6 +1,9 @@
 $.ajax("/input").then(data => data.json()).then(json => {
+  console.log(data);
+  console.log(json);
   config = JSON.parse(json);
-}) 
+  console.log(config);
+  });
 
 // const config = {
 //   apiKey: "AIzaSyAtoXNi11pzQhYSe5zMOQvM5BfPb0xRfYs",

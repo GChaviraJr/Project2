@@ -25,8 +25,9 @@ module.exports = function(app) {
   });
 
   app.get("/api/restaurants", function(req, res) {
-    db.Results.findAll({}).then(function(dbRestaurants) {
-      res.json(dbRestaurants);
+    db.Results.findAll({}).then(function(data) {
+      res.json(data);
+      return data;
     });
   });
 
