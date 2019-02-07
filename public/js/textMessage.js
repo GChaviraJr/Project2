@@ -53,8 +53,8 @@ $(document).ready(function () {
 
   var handleSelectButtonClick = function () {
     console.log("Select click is being registered");
-    var chosenName = $(this).parent().attr('name');
-    var chosenAddress = $(this).parent().attr('address');
+    var chosenName = $(this).parent().attr("name");
+    var chosenAddress = $(this).parent().attr("address");
     console.log(chosenName, chosenAddress);
     database.ref().child("brewery/name").set(chosenName);
     database.ref().child("brewery/location").set(chosenAddress);
@@ -85,12 +85,13 @@ $(document).ready(function () {
     reload();
   });
 
-  database.ref('brewery').once('value', function (childSnapshot) {
+  database.ref("brewery").once("value", function (childSnapshot) {
     let breweryChosen = childSnapshot.val().name
     $(`
     <tr>
         <td scope="row">${breweryChosen}</td>
-    `).appendTo('#brewerySelected')
+    `).appendTo("#brewerySelected");
+    reload();
 });
 
 
