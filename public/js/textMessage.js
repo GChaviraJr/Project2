@@ -1,11 +1,5 @@
-const config = {
-  apiKey: "AIzaSyAtoXNi11pzQhYSe5zMOQvM5BfPb0xRfYs",
-  authDomain: "http://brewery-crawl-ccd46.firebaseapp.com/",
-  databaseURL: "https://brewery-crawl-ccd46.firebaseio.com/",
-  projectId: "brewery-crawl-ccd46",
-  storageBucket: "http://brewery-crawl-ccd46.appspot.com/",
-  messagingSenderId: "322173165333"
-};
+
+
 firebase.initializeApp(config);
 
 const database = firebase.database();
@@ -127,58 +121,58 @@ $(document).ready(function () {
     app.post("/routes/apiRoutes.js", sendMessage())
   }
 
-  // $("#submitSendSMS").click(function() {
-  //   timeRef.on("value", function (snapshot) {
-  //     let timeChosen = snapshot.val().showTime;
+  $("#submitSendSMS").click(function() {
+    timeRef.on("value", function (snapshot) {
+      let timeChosen = snapshot.val().showTime;
 
-  //     database.ref("brewery").once("value", function (childSnapshot) {
-  //       let breweryChosen = childSnapshot.val().name;
-  //       let breweryChosenLocation = childSnapshot.val().location;
-  //       const message =
-  //         "Hey, we're going to " +
-  //         breweryChosen +
-  //         " which is at: " +
-  //         breweryChosenLocation +
-  //         ". We will be meeting there at: " +
-  //         timeChosen;
-  //       console.log(message);
+      database.ref("brewery").once("value", function (childSnapshot) {
+        let breweryChosen = childSnapshot.val().name;
+        let breweryChosenLocation = childSnapshot.val().location;
+        const message =
+          "Hey, we're going to " +
+          breweryChosen +
+          " which is at: " +
+          breweryChosenLocation +
+          ". We will be meeting there at: " +
+          timeChosen;
+        console.log(message);
 
-  //       const SID = "ACde7d929d4b9b0f7e32b6f0f553fe9667";
-  //       const Key = "41cdc646ad2521c5e86216b3b17dca1b";
-  //       database.ref("contacts").once("value", function (snapshot) {
-  //         snapshot.forEach(function (childSnapshot) {
-  //           var childKey = childSnapshot.key;
-  //           var childData = childSnapshot.val();
-  //           let name = childSnapshot.val().correctedNumber;
+        const SID = "ACde7d929d4b9b0f7e32b6f0f553fe9667";
+        const Key = "41cdc646ad2521c5e86216b3b17dca1b";
+        database.ref("contacts").once("value", function (snapshot) {
+          snapshot.forEach(function (childSnapshot) {
+            var childKey = childSnapshot.key;
+            var childData = childSnapshot.val();
+            let name = childSnapshot.val().correctedNumber;
 
-  //           $.ajax({
-  //             type: "POST",
-  //             url: "https://api.twilio.com/2010-04-01/Accounts/" +
-  //               SID +
-  //               "/Messages.json",
-  //             data: {
-  //               To: "+1" + name,
-  //               From: "+19562671699",
-  //               Body: message
-  //             },
-  //             beforeSend: function (xhr) {
-  //               xhr.setRequestHeader(
-  //                 "Authorization",
-  //                 "Basic " + btoa(SID + ":" + Key)
-  //               );
-  //             },
-  //             success: function (data) {
-  //               console.log(data);
-  //             },
-  //             error: function (data) {
-  //               console.log(data);
-  //             }
-  //           });
+            $.ajax({
+              type: "POST",
+              url: "https://api.twilio.com/2010-04-01/Accounts/" +
+                SID +
+                "/Messages.json",
+              data: {
+                To: "+1" + name,
+                From: "+19562671699",
+                Body: message
+              },
+              beforeSend: function (xhr) {
+                xhr.setRequestHeader(
+                  "Authorization",
+                  "Basic " + btoa(SID + ":" + Key)
+                );
+              },
+              success: function (data) {
+                console.log(data);
+              },
+              error: function (data) {
+                console.log(data);
+              }
+            });
 
-  //           console.log(message);
-  //         });
-  //       });
-  //     });
-  //   });
-  // });
+            console.log(message);
+          });
+        });
+      });
+    });
+  });
 });

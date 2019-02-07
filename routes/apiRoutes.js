@@ -121,66 +121,6 @@ module.exports = function(app) {
     storageBucket: process.env.FIREBASE_STG_BUCKET,
     messagingSenderId: process.env.FIREBASE_SENDER_ID
   };
-  const firebase = "https://www.gstatic.com/firebasejs/5.5.8/firebase.js";
-  firebase.initializeApp(config);
-  
-  const database = firebase.database();
-  const ref = database.ref("contacts");
-  const timeRef = database.ref("time");
 
-
-  const sendMessage = () => {
-    timeRef.on("value", function (snapshot) {
-      let timeChosen = snapshot.val().showTime;
-
-      database.ref("brewery").once("value", function (childSnapshot) {
-        let breweryChosen = childSnapshot.val().name;
-        let breweryChosenLocation = childSnapshot.val().location;
-        const message =
-          "Hey, we're going to " +
-          breweryChosen +
-          " which is at: " +
-          breweryChosenLocation +
-          ". We will be meeting there at: " +
-          timeChosen;
-        console.log(message);
-
-        database.ref("contacts").once("value", function (snapshot) {
-          snapshot.forEach(function (childSnapshot) {
-            var childKey = childSnapshot.key;
-            var childData = childSnapshot.val();
-            let name = childSnapshot.val().correctedNumber;
-
-            $.ajax({
-              type: "POST",
-              url: "https://api.twilio.com/2010-04-01/Accounts/" +
-              process.env.TWILIO_SID +
-                "/Messages.json",
-              data: {
-                To: "+1" + name,
-                From: "+19562671699",
-                Body: message
-              },
-              beforeSend: function (xhr) {
-                xhr.setRequestHeader(
-                  "Authorization",
-                  "Basic " + btoa(process.env.TWILIO_SID + ":" + process.env.TWILIO_KEY)
-                );
-              },
-              success: function (data) {
-                console.log(data);
-              },
-              error: function (data) {
-                console.log(data);
-              }
-            });
-
-            console.log(message);
-          });
-        });
-      });
-    });
-  };
-
-  app.post("/input", sendMessage());
+  app.post("/input", config);
 };
