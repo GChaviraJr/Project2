@@ -79,7 +79,7 @@ module.exports = function(app) {
     });
   });
 
-  app.delete("/api/examples/", function(req, res) {
+  app.delete("/api/restaurants/", function(req, res) {
     db.Results.destroy({
       where: {},
       truncate: true

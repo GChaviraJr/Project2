@@ -35,16 +35,6 @@
         <button class="btn btn-primary ml-3 mb-2 mt-2" id="registerSubmitBtn" type="submit">Submit</button>
         <a href="/register" class="btn btn-primary ml-3 mb-2 mt-2" role="button" aria-pressed="true">Sign Up</a>
       </div>
-        const password = signinForm.find("input[name=password]").val().trim()
-        const user = {
-          email: email,
-          password: password
-        }
-        
-        $.post("/home", user)
-          .then(function (data) {
-            window.sessionStorage.setItem("token", data.token);
-            if (data.success === "true") {
               location.replace("/input")
             }
           })
