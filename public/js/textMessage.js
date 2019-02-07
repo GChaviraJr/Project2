@@ -13,7 +13,7 @@
 //     config = JSON.parse(json)
 //   }
 
-GET /apps/{app_id_or_name}/config-vars
+// GET /apps/{app_id_or_name}/config-vars
 
 const config = {
   apiKey: "AIzaSyAtoXNi11pzQhYSe5zMOQvM5BfPb0xRfYs",
