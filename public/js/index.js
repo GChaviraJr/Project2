@@ -19,12 +19,12 @@ var API = {
       type: "GET"
     });
   },
-  // deleteRestaurants: function() {
-  //   return $.ajax({
-  //     url: "api/restaurants/",
-  //     type: "DELETE"
-  //   });
-  // },
+  deleteRestaurants: function() {
+    return $.ajax({
+      url: "api/restaurants/",
+      type: "DELETE"
+    });
+  },
   createSelectedLocation: function(locationInput) {
     return $.ajax({
       headers: {
@@ -43,11 +43,11 @@ var API = {
   }
 };
 
-  // var deleteRestaurantsInCurrentDatabase = function() {
-  //   API.deleteRestaurants().then(function() {
-  //     console.log("DELETE!");
-  //   });
-  // };
+  var deleteRestaurantsInCurrentDatabase = function() {
+    API.deleteRestaurants().then(function() {
+      console.log("DELETE!");
+    });
+  };
 
   // var deleteSelectedLocations = function() {
   //   API.deleteSelectedLocations().then(function() {
@@ -95,7 +95,7 @@ var handleUserInput = function(event) {
   console.log("Here I am");
   event.preventDefault();
   // deleteSelectedLocations();
-  // deleteRestaurantsInCurrentDatabase();
+  deleteRestaurantsInCurrentDatabase();
   var $userCityInput = $("#cityInput");
   var cityInput = {
     text: $userCityInput.val().trim()
