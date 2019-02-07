@@ -27,7 +27,6 @@ module.exports = function(app) {
   app.get("/api/restaurants", function(req, res) {
     db.Results.findAll({}).then(function(dbRestaurants) {
       res.json(dbRestaurants);
-      console.log(dbRestaurants);
     });
   });
 
@@ -113,12 +112,12 @@ module.exports = function(app) {
 
   // config var
 
-const firebaseAPIKey = process.env.FIREBASE_API_KEY;
-const firebaseDBURL = process.env.FIREBASE_DB_URL;
-const firebaseDomain = process.env.FIREBASE_DOMAIN;
-const firebaseProject = process.env.FIREBASE_PROJECT_ID;
-const firebaseSender = process.env.FIREBASE_SENDER_ID;
-const firebaseStgBucket = process.env.FIREBASE_STG_BUCKET;
+  const firebaseAPIKey = process.env.FIREBASE_API_KEY;
+  const firebaseDBURL = process.env.FIREBASE_DB_URL;
+  const firebaseDomain = process.env.FIREBASE_DOMAIN;
+  const firebaseProject = process.env.FIREBASE_PROJECT_ID;
+  const firebaseSender = process.env.FIREBASE_SENDER_ID;
+  const firebaseStgBucket = process.env.FIREBASE_STG_BUCKET;
 
   const config = {
     apiKey: firebaseAPIKey,
@@ -129,9 +128,8 @@ const firebaseStgBucket = process.env.FIREBASE_STG_BUCKET;
     messagingSenderId: firebaseSender
   };
 
-  app.post("/input:id", (req, res, db, bcrypt) => {
-    auth.requireAuth(db, bcrypt);
-    config;
+  app.post("/input", (req, res) => {
+    res.json(config);
   });
 
   // Delete an example by id

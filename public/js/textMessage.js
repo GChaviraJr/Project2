@@ -1,15 +1,15 @@
-$.ajax("/backend/route").then(data => data.json()).then(json => {
+$.ajax("/input").then(data => data.json()).then(json => {
   config = JSON.parse(json);
 }) 
 
-const config = {
-  apiKey: "AIzaSyAtoXNi11pzQhYSe5zMOQvM5BfPb0xRfYs",
-  authDomain: "http://brewery-crawl-ccd46.firebaseapp.com/",
-  databaseURL: "https://brewery-crawl-ccd46.firebaseio.com/",
-  projectId: "brewery-crawl-ccd46",
-  storageBucket: "http://brewery-crawl-ccd46.appspot.com/",
-  messagingSenderId: "322173165333"
-};
+// const config = {
+//   apiKey: "AIzaSyAtoXNi11pzQhYSe5zMOQvM5BfPb0xRfYs",
+//   authDomain: "http://brewery-crawl-ccd46.firebaseapp.com/",
+//   databaseURL: "https://brewery-crawl-ccd46.firebaseio.com/",
+//   projectId: "brewery-crawl-ccd46",
+//   storageBucket: "http://brewery-crawl-ccd46.appspot.com/",
+//   messagingSenderId: "322173165333"
+// };
 firebase.initializeApp(config);
 
 const database = firebase.database();
