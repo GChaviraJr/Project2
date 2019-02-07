@@ -5,11 +5,9 @@ $.ajax({
     console.log("successful!");
   },
   dataType: "json"
-}).then(function(responseJSON) {
-  const config = responseJSON
 });
 
-firebase.initializeApp(responseJSON);
+firebase.initializeApp(config);
 
 const database = firebase.database();
 const ref = database.ref("contacts");
