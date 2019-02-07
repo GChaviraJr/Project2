@@ -4,9 +4,6 @@
     </div>
 </div>
 
-<h2><span class="badge badge-secondary" id="userName"></span></h2> <button type="button" class="btn btn-secondary" id="signOutBtn">Sign
-    Out</button>
-
 <div class="card">
     <h5 class="card-header">Establishment Selected</h5>
     <div class="card-body">
@@ -21,6 +18,7 @@
         </table>
         </br>
         <a class="btn btn-secondary" href="index.html" role="button">Return to Search Results</a>
+        <button type="button" class="btn btn-secondary" id="signOutBtn">Sign Out</button>
     </div>
 </div>
 <div class="row">
@@ -84,12 +82,15 @@
     </div>
 </div>
 <div class="container" id="firstPageBody">
-    <h3>Restaurants:</h3>
-    <ul id="restaurant-list" class="list-group">
-        {{data}}
-    </ul>
-    <div class="row">
-
+    <div class="card">
+        <h5 class="card-header">Restaurants:</h5>
+        <div class="card-body">
+            <ul id="restaurant-list" class="list-group">
+                {{data}}
+            </ul>
+        <div class="row">
+        </div>
+        </div>
     </div>
 </div>
 

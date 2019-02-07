@@ -1,8 +1,6 @@
 <div id="home">
   <div class="container">
     <div class="jumbotron">
-      <div class="option animated infinite bounce">
-      </div>
       <h1 class="display-4" id="quote">"Wish you were beer.."</h1>
     </div>
   </div>
@@ -16,30 +14,19 @@
       </div>
       <div class="form-group">
         <label for="validationServerUsername" class="text-white">Email</label>
-        <div class="input-group">
-          <input type="text" class="form-control is-invalid" name="email" id="validationServerEmail" placeholder="john@doe.com"
-            aria-describedby="inputGroupPrepend3" required>
-            <br>
-            <small id="emailHelpBlock" class="form-text text-muted text-white">
-            Please enter your email address.
-          </div>
-        </div>
-        <br>
+        <input type="text" class="form-control" name="email" id="validationServerEmail" placeholder="john@doe.com" aria-describedby="inputGroupPrepend3" required>
+        <small id="emailHelpBlock" class="form-text text-muted text-white">Please enter your email address.</div>
+      </div>
       <div class="form-group">
         <label for="inputPassword5" class="text-white">Password</label>
-        <div class="input-group">
-          <input type="password" id="inputPassword5" class="form-control is-invalid" name="password" aria-describedby="passwordHelpBlock">
-          <br>
-          <small id="passwordHelpBlock" class="form-text text-muted text-white">
+        <input type="password" id="inputPassword5" class="form-control" name="password" aria-describedby="passwordHelpBlock" required>
+        <small id="passwordHelpBlock" class="form-text text-muted text-white">
           Your password must be 8-20 characters long, contain letters, numbers, special characters and must not contain
           spaces or emojis.
-          </small>
-          <br>
+        </small>
+      </div>
         <button class="btn btn-primary ml-3 mb-2 mt-2" id="registerSubmitBtn" type="submit">Submit</button>
         <a href="/register" class="btn btn-primary ml-3 mb-2 mt-2" role="button" aria-pressed="true">Sign Up</a>
-      </div>
-
-      </div>
     </form>
     </div>
   </div>
