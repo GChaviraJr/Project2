@@ -1,6 +1,6 @@
 // app.post("/routes/apiRoutes.js", config);
 
-$.post("/routes/apiRoutes.js", data, "json").then(function() {
+$.post("/routes/apiRoutes.js").then(function() {
   config = JSON.parse(data.config);
   console.log("twilio try succeeded");
 });
