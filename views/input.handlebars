@@ -100,9 +100,10 @@
     $(document).ready(function () {
         $.get("/home")
             .then(function (data) {
-                console.log("what is data? ", data);
                 window.sessionStorage.getItem("token", data.token);
+                console.log("session has been received")
                 if (window.sessionStorage.getItem("token", data.token)) {
+                    console.log("token has been authenticated. Session has started.")
                     $(`<p>Welcome</p>`).appendTo("#userName");
                 }
             })
