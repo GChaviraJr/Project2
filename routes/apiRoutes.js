@@ -33,6 +33,7 @@ module.exports = function(app) {
         limit: 10
       })
       .then(response => {
+        console.log(response);
         for (var i = 0; i < 10; i++) {
           var tableData = {
             name: response.jsonBody.businesses[i].name,
@@ -45,9 +46,10 @@ module.exports = function(app) {
           db.Results.create(tableData);
         }
         res.status(200).send(response);
-      }).catch(e => {
-        console.log(e);
       })
+      .catch(e => {
+        console.log(e);
+      });;
   });
 
   app.post("/api/selectedLocation", (req, res) => {
@@ -64,7 +66,7 @@ module.exports = function(app) {
       where: {},
       truncate: true
     }).then(function() {
-      res.render("input");;
+      res.render("input");
       console.log("all selected locations deleted");
     });
   });
@@ -88,7 +90,7 @@ module.exports = function(app) {
       phone: req.body.phone,
       password: req.body.password,
       hash: bcrypt.hashSync(req.body.password)
-    }).then((dbUser) => {
+    }).then(dbUser => {
       res.json(dbUser);
     });
   });
@@ -109,7 +111,4 @@ module.exports = function(app) {
       res.json(dbExample);
     });
   });
-
 };
-
-
