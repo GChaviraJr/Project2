@@ -1,5 +1,6 @@
 $.post("/input").then(function(data) {
-  console.log(data);
+  console.log(data)
+  console.log(data.Key, data.SID, data.apiKey);
   JSON.parse(data);
   console.log(data);
 });
