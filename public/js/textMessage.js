@@ -118,13 +118,13 @@ $(document).ready(function () {
     let timeChosen = snapshot.val().showTime;
 
     database.ref("brewery").once("value", function (childSnapshot) {
-      let breweryChosen = childSnapshot.val().name;
-      let breweryChosenLocation = childSnapshot.val().location;
+      let chosenName = childSnapshot.val().name;
+      let chosenAddress = childSnapshot.val().location;
       const message =
         "Hey, we're going to " +
-        breweryChosen +
+        chosenName +
         " which is at: " +
-        breweryChosenLocation +
+        chosenAddress +
         ". We will be meeting there at: " +
         timeChosen;
     });
