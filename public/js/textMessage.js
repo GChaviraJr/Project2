@@ -58,6 +58,7 @@ $(document).ready(function () {
     console.log(chosenName, chosenAddress);
     database.ref().child("brewery/name").set(chosenName);
     database.ref().child("brewery/location").set(chosenAddress);
+    reload();
   };
 
   $restaurantList.on("click", ".delete", handleSelectButtonClick);
