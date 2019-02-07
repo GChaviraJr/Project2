@@ -1,10 +1,9 @@
-
 $.post("/input").then(function() {
   config = JSON.parse(data.config);
   console.log("twilio try succeeded");
 });
 
-firebase.initializeApp(config);
+firebase.initializeApp(data.config);
 
 const database = firebase.database();
 const ref = database.ref("contacts");
