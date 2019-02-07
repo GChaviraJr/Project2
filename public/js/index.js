@@ -153,4 +153,4 @@ var handleUserInput = function (event) {
 
 // Add event listeners to the submit and delete buttons
 $(document).on("click", "#searchBtn", handleUserInput);
-$restaurantList.on("click", ".delete", handleSelectButtonClick);
+// $restaurantList.on("click", ".delete", handleSelectButtonClick);
