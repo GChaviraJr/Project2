@@ -1,20 +1,3 @@
-// $.ajax("/routes/apiRoutes.js").then(data => data.json()).then(json => {
-//   console.log(data);
-//   console.log(json);
-//   config = JSON.parse(json);
-//   console.log(config);
-// });
-
-// $.ajax({
-//   type: "POST",
-//   url:
-//     "/routes/apiRoutes.js",
-//   data: {
-//     config = JSON.parse(json)
-//   }
-
-// GET /apps/{app_id_or_name}/config-vars
-
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_DOMAIN,
