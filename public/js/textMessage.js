@@ -1,4 +1,5 @@
 $.post("/input").then(function(data) {
+  console.log(data);
   JSON.parse(data);
   console.log(data);
 });
