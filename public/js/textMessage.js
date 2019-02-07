@@ -1,4 +1,4 @@
-$.post("/input").then(data => data.json()).then(json => {
+$.ajax("/input").then(data => data.json()).then(json => {
   console.log(data);
   console.log(json);
   config = JSON.parse(json);
