@@ -1,12 +1,26 @@
-const dotenv = require("dotenv");
+// $.ajax("/routes/apiRoutes.js").then(data => data.json()).then(json => {
+//   console.log(data);
+//   console.log(json);
+//   config = JSON.parse(json);
+//   console.log(config);
+// });
+
+// $.ajax({
+//   type: "POST",
+//   url:
+//     "/routes/apiRoutes.js",
+//   data: {
+//     config = JSON.parse(json)
+//   }
+
 
 const config = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_DOMAIN,
-  databaseURL: process.env.FIREBASE_DB_URL,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STG_BUCKET,
-  messagingSenderId: process.env.FIREBASE_SENDER_ID
+  apiKey: "AIzaSyAtoXNi11pzQhYSe5zMOQvM5BfPb0xRfYs",
+  authDomain: "http://brewery-crawl-ccd46.firebaseapp.com/",
+  databaseURL: "https://brewery-crawl-ccd46.firebaseio.com/",
+  projectId: "brewery-crawl-ccd46",
+  storageBucket: "http://brewery-crawl-ccd46.appspot.com/",
+  messagingSenderId: "322173165333"
 };
 firebase.initializeApp(config);
 
@@ -55,8 +69,8 @@ $(document).ready(function () {
 
   var handleSelectButtonClick = function () {
     console.log("Select click is being registered");
-    var chosenName = $(this).parent().attr('name');
-    var chosenAddress = $(this).parent().attr('address');
+    var chosenName = $(this).parent().name;
+    var chosenAddress = $(this).parent(address;
     console.log(chosenName, chosenAddress);
     database.ref().child("brewery/name").set(chosenName);
     database.ref().child("brewery/location").set(chosenAddress);
@@ -132,8 +146,8 @@ $(document).ready(function () {
           timeChosen;
         console.log(message);
 
-        // const SID = "ACde7d929d4b9b0f7e32b6f0f553fe9667";
-        // const Key = "41cdc646ad2521c5e86216b3b17dca1b";
+        const SID = "ACde7d929d4b9b0f7e32b6f0f553fe9667";
+        const Key = "41cdc646ad2521c5e86216b3b17dca1b";
         database.ref("contacts").once("value", function (snapshot) {
           snapshot.forEach(function (childSnapshot) {
             var childKey = childSnapshot.key;
@@ -143,7 +157,7 @@ $(document).ready(function () {
             $.ajax({
               type: "POST",
               url: "https://api.twilio.com/2010-04-01/Accounts/" +
-                process.env.TWILIO_SID +
+                SID +
                 "/Messages.json",
               data: {
                 To: "+1" + name,
@@ -153,7 +167,7 @@ $(document).ready(function () {
               beforeSend: function (xhr) {
                 xhr.setRequestHeader(
                   "Authorization",
-                  "Basic " + btoa(process.env.TWILIO_SID + ":" + process.env.TWILIO_KEY)
+                  "Basic " + btoa(SID + ":" + Key)
                 );
               },
               success: function (data) {
