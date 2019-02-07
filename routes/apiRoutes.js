@@ -119,16 +119,12 @@ module.exports = function(app) {
     databaseURL: process.env.FIREBASE_DB_URL,
     projectId: process.env.FIREBASE_PROJECT_ID,
     storageBucket: process.env.FIREBASE_STG_BUCKET,
-    messagingSenderId: process.env.FIREBASE_SENDER_ID
-  };
-
-  const twilioData = {
+    messagingSenderId: process.env.FIREBASE_SENDER_ID,
     SID: process.env.TWILIO_SID,
     Key: process.env.TWILIO_KEY
   };
 
   app.post("/input", function(req, res) {
     res.json(config);
-    res.json(twilioData);
   });
 };

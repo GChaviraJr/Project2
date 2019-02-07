@@ -1,12 +1,6 @@
-$.ajax({
-  method: "POST",
-  url: "/input",
-  dataType: "json",
-  success: function(data) {
-    console.log("successful! ", data);
-  }
-}).then(() => {
-  console.log("Here it is ", data);
+$.post("/input").then(function(data) {
+  JSON.parse(data);
+  console.log(data);
 });
 
 firebase.initializeApp(config);
@@ -25,8 +19,8 @@ const clearPersonalInput = () => {
   $("#confirmedTime").val("");
 };
 
-$(document).ready(function () {
-  $("#submitPersonalInfo").on("click", function (event) {
+$(document).ready(function() {
+  $("#submitPersonalInfo").on("click", function(event) {
     let name = $("#nameInput")
       .val()
       .trim();
@@ -37,39 +31,49 @@ $(document).ready(function () {
       .val()
       .trim()
       .replace(/[^0-9 am pm]/g, "");
-      let correctedNumber = number.replace(/[^0-9]/g, "");
-      
-      var userInfo = {
-        name: name,
-        correctedNumber: correctedNumber
-      };
-      timeRef.set({
+    let correctedNumber = number.replace(/[^0-9]/g, "");
+
+    var userInfo = {
+      name: name,
+      correctedNumber: correctedNumber
+    };
+    timeRef.set({
       showTime: confirmedTime
     });
-    
+
     ref.push(userInfo);
     clearPersonalInput();
     reload();
   });
-  
+
   var $restaurantList = $("#restaurant-list");
 
-  var handleSelectButtonClick = function () {
+  var handleSelectButtonClick = function() {
     console.log("Select click is being registered");
-    var chosenName = $(this).parent().attr("name");
-    var chosenAddress = $(this).parent().attr("address");
+    var chosenName = $(this)
+      .parent()
+      .attr("name");
+    var chosenAddress = $(this)
+      .parent()
+      .attr("address");
     console.log(chosenName, chosenAddress);
-    database.ref().child("brewery/name").set(chosenName);
-    database.ref().child("brewery/location").set(chosenAddress);
+    database
+      .ref()
+      .child("brewery/name")
+      .set(chosenName);
+    database
+      .ref()
+      .child("brewery/location")
+      .set(chosenAddress);
     reload();
   };
 
   $restaurantList.on("click", ".delete", handleSelectButtonClick);
-  
+
   // Remove button
   // Appending info from Firebase to the table
-  
-  database.ref("contacts").on("child_added", function (childSnapshot) {
+
+  database.ref("contacts").on("child_added", function(childSnapshot) {
     let name = childSnapshot.val().name;
     let dataKey = childSnapshot.key;
     let username = name + dataKey;
@@ -83,22 +87,21 @@ $(document).ready(function () {
     `).appendTo("#contactList");
   });
 
-  $("#contactList").on("click", ".removeUser", function (event) {
+  $("#contactList").on("click", ".removeUser", function(event) {
     const key = $(this).attr("data-key");
     ref.child(key).remove();
     reload();
   });
 
-  database.ref("brewery").once("value", function (childSnapshot) {
-    let breweryChosen = childSnapshot.val().name
+  database.ref("brewery").once("value", function(childSnapshot) {
+    let breweryChosen = childSnapshot.val().name;
     $(`
     <tr>
         <td scope="row">${breweryChosen}</td>
     `).appendTo("#brewerySelected");
-});
+  });
 
-
-  timeRef.on("value", function (snapshot) {
+  timeRef.on("value", function(snapshot) {
     let timeChosen = snapshot.val().showTime;
     $(`
     <td>${timeChosen}</td>
@@ -109,10 +112,10 @@ $(document).ready(function () {
 
   // Creating the message to be sent
 
-  timeRef.on("value", function (snapshot) {
+  timeRef.on("value", function(snapshot) {
     let timeChosen = snapshot.val().showTime;
 
-    database.ref("brewery").once("value", function (childSnapshot) {
+    database.ref("brewery").once("value", function(childSnapshot) {
       let chosenName = childSnapshot.val().name;
       let chosenAddress = childSnapshot.val().location;
       const message =
@@ -127,10 +130,10 @@ $(document).ready(function () {
 
   // Send a SMS when button is clicked!
   $("#submitSendSMS").click(function() {
-    timeRef.on("value", function (snapshot) {
+    timeRef.on("value", function(snapshot) {
       let timeChosen = snapshot.val().showTime;
 
-      database.ref("brewery").once("value", function (childSnapshot) {
+      database.ref("brewery").once("value", function(childSnapshot) {
         let breweryChosen = childSnapshot.val().name;
         let breweryChosenLocation = childSnapshot.val().location;
         const message =
@@ -144,15 +147,16 @@ $(document).ready(function () {
 
         const SID = "ACde7d929d4b9b0f7e32b6f0f553fe9667";
         const Key = "41cdc646ad2521c5e86216b3b17dca1b";
-        database.ref("contacts").once("value", function (snapshot) {
-          snapshot.forEach(function (childSnapshot) {
+        database.ref("contacts").once("value", function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
             let name = childSnapshot.val().correctedNumber;
 
             $.ajax({
               type: "POST",
-              url: "https://api.twilio.com/2010-04-01/Accounts/" +
+              url:
+                "https://api.twilio.com/2010-04-01/Accounts/" +
                 SID +
                 "/Messages.json",
               data: {
@@ -160,16 +164,16 @@ $(document).ready(function () {
                 From: "+19562671699",
                 Body: message
               },
-              beforeSend: function (xhr) {
+              beforeSend: function(xhr) {
                 xhr.setRequestHeader(
                   "Authorization",
                   "Basic " + btoa(SID + ":" + Key)
                 );
               },
-              success: function (data) {
+              success: function(data) {
                 console.log(data);
               },
-              error: function (data) {
+              error: function(data) {
                 console.log(data);
               }
             });
