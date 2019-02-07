@@ -121,8 +121,4 @@ module.exports = function(app) {
     storageBucket: process.env.FIREBASE_STG_BUCKET,
     messagingSenderId: process.env.FIREBASE_SENDER_ID
   };
-
-  app.post("/input", config).then(function() {
-    console.log("configuration completed");
-  });
 };

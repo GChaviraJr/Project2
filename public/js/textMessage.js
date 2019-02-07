@@ -1,4 +1,9 @@
-app.post("/routes/apiRoutes.js", config);
+// app.post("/routes/apiRoutes.js", config);
+
+$.post("/routes/apiRoutes.js", config, "json").then(function() {
+  config = JSON.parse(config);
+  console.log("twilio try succeeded");
+});
 
 firebase.initializeApp(config);
 
