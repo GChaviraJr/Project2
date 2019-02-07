@@ -91,7 +91,6 @@ $(document).ready(function () {
     <tr>
         <td scope="row">${breweryChosen}</td>
     `).appendTo("#brewerySelected");
-    reload();
 });
 
 
