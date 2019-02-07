@@ -58,7 +58,7 @@ var API = {
   // refreshExamples gets new examples from the db and repopulates the list
 var refreshRestaurants = function() {
   API.getRestaurants().then(function(data) {
-    console.log(data);
+    console.log("here is data", data);
     var $restaurants = data.map(function(restaurant) {
       var $a = $("<a>")
         .text(restaurant.name)

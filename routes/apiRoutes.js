@@ -129,9 +129,11 @@ module.exports = function(app) {
     messagingSenderId: firebaseSender
   };
 
-  app.post("/input", (req, res) => {
-    res.json(config);
-  });
+  app.post("/input", config.json());
+
+  // app.post("/input", (req, res) => {
+  //   res.json(config);
+  // });
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {

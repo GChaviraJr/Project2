@@ -1,9 +1,17 @@
-$.ajax("/input").then(data => data.json()).then(json => {
-  console.log(data);
-  console.log(json);
-  config = JSON.parse(json);
-  console.log(config);
-  });
+// $.ajax("/routes/apiRoutes.js").then(data => data.json()).then(json => {
+//   console.log(data);
+//   console.log(json);
+//   config = JSON.parse(json);
+//   console.log(config);
+// });
+
+$.ajax({
+  type: "POST",
+  url:
+    "/routes/apiRoutes.js",
+  data: {
+    config = JSON.parse(json)
+  }
 
 // const config = {
 //   apiKey: "AIzaSyAtoXNi11pzQhYSe5zMOQvM5BfPb0xRfYs",
