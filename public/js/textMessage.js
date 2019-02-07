@@ -1,10 +1,11 @@
 $.ajax({
   method: "POST",
   url: "/input",
-  success: function(data) {
-    console.log("successful!");
-  },
-  dataType: "json"
+  dataType: "json",
+  success: function(data, config) {
+    console.log("successful! ", data);
+    console.log("what is it ", config);
+  }
 });
 
 firebase.initializeApp(config);
