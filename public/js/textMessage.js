@@ -1,8 +1,16 @@
 $.post("/input").then(function(data) {
-  console.log(data)
-  console.log(data.Key, data.SID, data.apiKey);
-  JSON.parse(data);
   console.log(data);
+  const config = {
+    apiKey: data.apikey,
+    authDomain: data.authDomain,
+    databaseURL: data.databaseURL,
+    projectId: data.projectId,
+    storageBucket: data.storageBucket,
+    messagingSenderId: data.messagingSenderId
+  };
+    const SID = data.SID;
+    const Key = data.Key;
+
 });
 
 firebase.initializeApp(config);
@@ -130,6 +138,20 @@ $(document).ready(function() {
     });
   });
 
+  $.post("/input").then(function(data) {
+    console.log(data);
+    const config = {
+      apiKey: data.apikey,
+      authDomain: data.authDomain,
+      databaseURL: data.databaseURL,
+      projectId: data.projectId,
+      storageBucket: data.storageBucket,
+      messagingSenderId: data.messagingSenderId
+    };
+      const SID = data.SID;
+      const Key = data.Key;
+  
+  });
   // Send a SMS when button is clicked!
   $("#submitSendSMS").click(function() {
     timeRef.on("value", function(snapshot) {
