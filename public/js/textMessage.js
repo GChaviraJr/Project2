@@ -88,14 +88,6 @@ $(document).ready(function() {
     reload();
   });
 
-  database.ref("brewery").once("value", function(childSnapshot) {
-    let breweryChosen = childSnapshot.val().name;
-    $(`
-    <tr>
-        <td scope="row">${breweryChosen}</td>
-    `).appendTo("#brewerySelected");
-  });
-
   timeRef.on("value", function(snapshot) {
     let timeChosen = snapshot.val().showTime;
     $(`
