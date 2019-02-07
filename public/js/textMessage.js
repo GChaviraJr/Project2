@@ -1,4 +1,3 @@
-// app.post("/routes/apiRoutes.js", config);
 
 $.post("/input").then(function() {
   config = JSON.parse(data.config);
