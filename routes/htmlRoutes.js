@@ -20,8 +20,8 @@ module.exports = function(app) {
   });
 
   app.get("/input", function(req, res) {
-    db.Results.findAll({}).then(function() {
-      res.render("../views/input.handlebars", {});
+    db.Results.findAll({}).then(function(data) {
+      res.render("../views/input.handlebars", {data: data});
     });
   });
 
