@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "Sb1598951",
-    "database": "brewery_db",
+    "password": "tuckerbug",
+    "database": "brewerydb",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

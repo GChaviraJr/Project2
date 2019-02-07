@@ -7,36 +7,34 @@
     </div>
   </div>
 
-
    <div class="container" id="firstPageBody">
     <form id="signIn">
       <div>
         <h3 class="text-white">
           Sign in or sign up for a new account
         </h3>
-        <a href="/register" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign Up</a>
       </div>
-      <div class="col-md-4 mb-3 ml-1 mt-2">
-        <label for="validationServerUsername">Email</label>
+      <div class="form-group">
+        <label for="validationServerUsername" class="text-white">Email</label>
         <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroupPrepend3">@</span>
-          </div>
           <input type="text" class="form-control is-invalid" name="email" id="validationServerEmail" placeholder="john@doe.com"
             aria-describedby="inputGroupPrepend3" required>
-          <div class="invalid-feedback">
+            <small id="passwordHelpBlock" class="form-text text-muted text-white">
             Please enter your email address.
           </div>
         </div>
       </div>
       <div class="form-group">
         <label for="inputPassword5" class="text-white">Password</label>
-        <input type="password" id="inputPassword5" class="form-control" name="password" aria-describedby="passwordHelpBlock">
-        <small id="passwordHelpBlock" class="form-text text-muted text-white">
+        <div class="input-group">
+          <input type="password" id="inputPassword5" class="form-control is-invalid" name="password" aria-describedby="passwordHelpBlock">
+          <small id="passwordHelpBlock" class="form-text text-muted text-white">
           Your password must be 8-20 characters long, contain letters, numbers, special characters and must not contain
-          spaces or emoji.
-        </small>
+          spaces or emojis.
+          </small>
         <button class="btn btn-primary ml-3 mb-2 mt-2" id="registerSubmitBtn" type="submit">Submit</button>
+        <a href="/register" class="btn btn-primary ml-3 mb-2 mt-2" role="button" aria-pressed="true">Sign Up</a>
+      </div>
       </div>
     </form>
   </div>
