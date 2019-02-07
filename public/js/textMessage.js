@@ -1,4 +1,4 @@
-
+app.post("/routes/apiRoutes.js", config);
 
 firebase.initializeApp(config);
 
@@ -117,10 +117,6 @@ $(document).ready(function () {
   });
 
   // Send a SMS when button is clicked!
-  $("#submitSendSMS").click(function() {
-    app.post("/routes/apiRoutes.js", sendMessage())
-  }
-
   $("#submitSendSMS").click(function() {
     timeRef.on("value", function (snapshot) {
       let timeChosen = snapshot.val().showTime;
