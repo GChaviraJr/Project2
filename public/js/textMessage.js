@@ -1,19 +1,3 @@
-// $.ajax("/routes/apiRoutes.js").then(data => data.json()).then(json => {
-//   console.log(data);
-//   console.log(json);
-//   config = JSON.parse(json);
-//   console.log(config);
-// });
-
-// $.ajax({
-//   type: "POST",
-//   url:
-//     "/routes/apiRoutes.js",
-//   data: {
-//     config = JSON.parse(json)
-//   }
-
-
 const config = {
   apiKey: "AIzaSyAtoXNi11pzQhYSe5zMOQvM5BfPb0xRfYs",
   authDomain: "http://brewery-crawl-ccd46.firebaseapp.com/",
@@ -100,6 +84,15 @@ $(document).ready(function () {
     ref.child(key).remove();
     reload();
   });
+
+  database.ref('brewery').once('value', function (childSnapshot) {
+    let breweryChosen = childSnapshot.val().name
+    $(`
+    <tr>
+        <td scope="row">${breweryChosen}</td>
+    `).appendTo('#brewerySelected')
+});
+
 
   timeRef.on("value", function (snapshot) {
     let timeChosen = snapshot.val().showTime;
