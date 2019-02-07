@@ -122,7 +122,7 @@ module.exports = function(app) {
     messagingSenderId: process.env.FIREBASE_SENDER_ID
   };
 
-  app.post("/input", config, cb).then(function(cb) {
-    cb;
+  app.post("/input", config).then(function() {
+    console.log("configuration completed");
   });
 };
