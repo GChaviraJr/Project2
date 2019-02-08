@@ -4,7 +4,6 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const db = require("./models");
 
-
 const app = express();
 const bcrypt = require("bcrypt-nodejs");
 const PORT = process.env.PORT || 3000;
@@ -31,7 +30,6 @@ require("./routes/htmlRoutes")(app);
 app.post("/register", (req, res) => {
   register.handleRegister(req, res, db, bcrypt);
 });
-
 
 const syncOptions = { force: false };
 
