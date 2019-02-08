@@ -108,6 +108,13 @@
                 }
             })
 
+        $.post("/input")
+          .then(function (data) {
+            if (location.reload()) {
+                requireAuth();
+            }
+          })
+
         $("#signOutBtn").on("click", function (event) {
             sessionStorage.clear();
             location.replace("/");
