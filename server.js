@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const exphbs = require("express-handlebars");
 const db = require("./models");
-const auth = require("./routes/authorization");
+
 
 const app = express();
 const bcrypt = require("bcrypt-nodejs");
@@ -31,7 +31,7 @@ require("./routes/htmlRoutes")(app);
 app.post("/register", (req, res) => {
   register.handleRegister(req, res, db, bcrypt);
 });
-app.post("/input:id", auth.requireAuth(req, res));
+
 
 const syncOptions = { force: false };
 
