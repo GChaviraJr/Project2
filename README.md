@@ -19,4 +19,7 @@ Once registered, the user has access to the full app. The user will:
       
       5. Click "Send Invite" to send a text message to all of the people in the list
       
+      Deployed Link: 
+      https://nameless-wave-88112.herokuapp.com/
+      
       
