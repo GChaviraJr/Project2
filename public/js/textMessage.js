@@ -1,14 +1,14 @@
 $.post("/input").then(function(data) {
   const config = {
-    apiKey: data.apikey,
+    apiKey: data.apiKey,
     authDomain: data.authDomain,
     databaseURL: data.databaseURL,
     projectId: data.projectId,
     storageBucket: data.storageBucket,
     messagingSenderId: data.messagingSenderId
   };
-  const SID = data.SID;
-  const Key = data.Key;
+  const sid = sid;
+  const key = key;
 
   firebase.initializeApp(config);
 

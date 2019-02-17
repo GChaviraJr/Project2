@@ -10,11 +10,8 @@ const signToken = username => {
 const setToken = (key, value) => Promise.resolve(redisClient.set(key, value));
 
 const createSession = (db, user) => {
-  console.log("start of createSession");
   const { email, id } = user;
-  console.log("after first const of createSession");
   const token = signToken(email);
-  console.log("right before first return of createSession");
   return db.User.findAll({
     where: {
       email: email,
@@ -63,7 +60,6 @@ const getAuthTokenId = (req, res) => {
   console.log("getAuthTokenId started");
   return redisClient.get(authorization, (err, reply) => {
     if (err || !reply) {
-      console.log("if statement of getAuthTokenId");
       return res.status(401).send("Unauthorized");
     }
     return res.json({ id: reply });
